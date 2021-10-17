@@ -1,0 +1,40 @@
+{
+  "name": "@wuxudongxd/jira-dev-tool",
+  "version": "1.0.1",
+  "license": "MIT",
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm/index.js",
+  "types": "lib/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./lib/esm/index.js",
+      "require": "./lib/cjs/index.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "cross-env NODE_ENV=production rollup -c",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "localforage": "^1.10.0",
+    "msw": "^0.35.0"
+  },
+  "msw": {
+    "workerDirectory": "public"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^21.0.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.0.5",
+    "@rollup/plugin-replace": "^3.0.0",
+    "cross-env": "^7.0.3",
+    "rollup": "^2.58.0",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "typescript": "^4.3.2",
+    "vite": "^2.6.7"
+  }
+}
