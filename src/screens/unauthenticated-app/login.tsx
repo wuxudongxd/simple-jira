@@ -1,18 +1,22 @@
-import { login } from "hooks/useAuth";
 import { Form, Input } from "antd";
 import { LongButton } from "./index";
+import { useMutation } from "react-query";
+import * as auth from "utils/auth-provider";
+import { AuthForm } from "src/types";
 
 export const LoginScreen = ({
   onError,
 }: {
   onError: (error: Error) => void;
 }) => {
+  const mutation = useMutation((form: AuthForm) => auth.login(form));
+
   const handleSubmit = async (values: {
     username: string;
     password: string;
   }) => {
     try {
-      login(values);
+      mutation.mutate(values);
     } catch (e: any) {
       onError(e);
     }

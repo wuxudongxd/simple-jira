@@ -6,3 +6,8 @@ export interface User {
   organization: string;
   token: string;
 }
+
+export interface AuthForm {
+  username: string;
+  password: string;
+}

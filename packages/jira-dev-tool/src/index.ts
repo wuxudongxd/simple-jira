@@ -2,8 +2,6 @@ import { worker } from "./mocks/browser";
 import { getItem, setItem, clear } from "localforage";
 import db from "./initial.json";
 
-const IsInitial = true;
-
 function DevTool(foo: () => void) {
   if (import.meta.env.DEV) {
     worker.start({

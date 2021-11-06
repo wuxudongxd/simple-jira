@@ -1,13 +1,8 @@
-import { register } from "hooks/useAuth";
 import { Form, Input } from "antd";
 import { LongButton } from "./index";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import * as auth from "utils/auth-provider";
-
-interface AuthForm {
-  username: string;
-  password: string;
-}
+import { AuthForm } from "src/types";
 
 export const RegisterScreen = ({
   onError,

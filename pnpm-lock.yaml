@@ -38,7 +38,7 @@ importers:
       react-query: registry.npmmirror.com/react-query/3.29.0_react-dom@17.0.2+react@17.0.2
     devDependencies:
       '@emotion/react': registry.npmmirror.com/@emotion/react/11.5.0_27d7f75f5fffc1228c129be468caca5c
-      '@emotion/styled': registry.npmmirror.com/@emotion/styled/11.3.0_f400783037ccf00f9cadfddbfc36c9d5
+      '@emotion/styled': registry.npmmirror.com/@emotion/styled/11.3.0_4e86505ff6f3e0b8d0f6b2c7f9d7b098
       '@types/node': registry.npmmirror.com/@types/node/16.11.6
       '@types/qs': registry.nlark.com/@types/qs/6.9.7
       '@types/react': registry.npmmirror.com/@types/react/17.0.34
@@ -66,6 +66,10 @@ importers:
       '@rollup/plugin-commonjs': ^21.0.1
       '@rollup/plugin-json': ^4.1.0
       '@rollup/plugin-node-resolve': ^13.0.6
+      '@types/crypto-js': ^4.0.2
+      '@types/jsonwebtoken': ^8.5.5
+      crypto-js: ^4.1.1
+      jsonwebtoken: ^8.5.1
       localforage: ^1.10.0
       msw: ^0.35.0
       rollup: ^2.59.0
@@ -73,12 +77,16 @@ importers:
       tslib: ^2.3.1
       typescript: ^4.4.4
     dependencies:
+      crypto-js: registry.npmmirror.com/crypto-js/4.1.1
+      jsonwebtoken: registry.npmmirror.com/jsonwebtoken/8.5.1
       localforage: registry.nlark.com/localforage/1.10.0
       msw: registry.npmmirror.com/msw/0.35.0
     devDependencies:
       '@rollup/plugin-commonjs': registry.npmmirror.com/@rollup/plugin-commonjs/21.0.1_rollup@2.59.0
       '@rollup/plugin-json': registry.npmmirror.com/@rollup/plugin-json/4.1.0_rollup@2.59.0
       '@rollup/plugin-node-resolve': registry.npmmirror.com/@rollup/plugin-node-resolve/13.0.6_rollup@2.59.0
+      '@types/crypto-js': registry.npmmirror.com/@types/crypto-js/4.0.2
+      '@types/jsonwebtoken': registry.npmmirror.com/@types/jsonwebtoken/8.5.5
       rollup: registry.npmmirror.com/rollup/2.59.0
       rollup-plugin-typescript2: registry.nlark.com/rollup-plugin-typescript2/0.30.0_rollup@2.59.0+typescript@4.4.4
       tslib: registry.nlark.com/tslib/2.3.1
@@ -1043,8 +1051,29 @@ packages:
     name: debug
     version: 4.3.2
     engines: {node: '>=6.0'}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
     dependencies:
       ms: registry.npmmirror.com/ms/2.1.2
+
+  registry.nlark.com/debug/4.3.2_supports-color@8.1.1:
+    resolution: {integrity: sha1-8KScGKyHeeMdSgxgKd+3aHPHQos=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/debug/download/debug-4.3.2.tgz}
+    id: registry.nlark.com/debug/4.3.2
+    name: debug
+    version: 4.3.2
+    engines: {node: '>=6.0'}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+    dependencies:
+      ms: registry.npmmirror.com/ms/2.1.2
+      supports-color: registry.nlark.com/supports-color/8.1.1
+    dev: true
 
   registry.nlark.com/decamelize-keys/1.1.0:
     resolution: {integrity: sha1-0XGoeTMlKAfrPLYdwcFEXQeN8tk=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/decamelize-keys/download/decamelize-keys-1.1.0.tgz}
@@ -2125,7 +2154,7 @@ packages:
     name: jsonfile
     version: 4.0.0
     optionalDependencies:
-      graceful-fs: registry.nlark.com/graceful-fs/4.2.8
+      graceful-fs: registry.npmmirror.com/graceful-fs/4.2.8
     dev: true
 
   registry.nlark.com/jsonparse/1.3.1:
@@ -2144,6 +2173,15 @@ packages:
       array-includes: registry.npmmirror.com/array-includes/3.1.4
       object.assign: registry.nlark.com/object.assign/4.1.2
     dev: true
+
+  registry.nlark.com/jws/3.2.2:
+    resolution: {integrity: sha1-ABCZ82OUaMlBQADpmZX6UvtHgwQ=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/jws/download/jws-3.2.2.tgz}
+    name: jws
+    version: 3.2.2
+    dependencies:
+      jwa: registry.npmmirror.com/jwa/1.4.1
+      safe-buffer: registry.nlark.com/safe-buffer/5.2.1
+    dev: false
 
   registry.nlark.com/kind-of/6.0.3:
     resolution: {integrity: sha1-B8BQNKbDSfoG4k+jWqdttFgM5N0=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/kind-of/download/kind-of-6.0.3.tgz}
@@ -2215,11 +2253,23 @@ packages:
       p-locate: registry.nlark.com/p-locate/4.1.0
     dev: true
 
+  registry.nlark.com/lodash.isinteger/4.0.4:
+    resolution: {integrity: sha1-YZwK89A/iwTDH1iChAt3sRzWg0M=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/lodash.isinteger/download/lodash.isinteger-4.0.4.tgz}
+    name: lodash.isinteger
+    version: 4.0.4
+    dev: false
+
   registry.nlark.com/lodash.ismatch/4.4.0:
     resolution: {integrity: sha1-dWy1FQyjum8RCFp4hJZF8Yj4Xzc=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/lodash.ismatch/download/lodash.ismatch-4.4.0.tgz}
     name: lodash.ismatch
     version: 4.4.0
     dev: true
+
+  registry.nlark.com/lodash.isplainobject/4.0.6:
+    resolution: {integrity: sha1-fFJqUtibRcRcxpC4gWO+BJf1UMs=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/lodash.isplainobject/download/lodash.isplainobject-4.0.6.tgz}
+    name: lodash.isplainobject
+    version: 4.0.6
+    dev: false
 
   registry.nlark.com/lodash.map/4.6.0:
     resolution: {integrity: sha1-dx7Hg540c9nEzeKLGTlMNWL09tM=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/lodash.map/download/lodash.map-4.6.0.tgz}
@@ -2232,6 +2282,12 @@ packages:
     name: lodash.merge
     version: 4.6.2
     dev: true
+
+  registry.nlark.com/lodash.once/4.1.1:
+    resolution: {integrity: sha1-DdOXEhPHxW34gJd9UEyI+0cal6w=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/lodash.once/download/lodash.once-4.1.1.tgz}
+    name: lodash.once
+    version: 4.1.1
+    dev: false
 
   registry.nlark.com/lodash/4.17.21:
     resolution: {integrity: sha1-Z5WRxWTDv/quhFTPCz3zcMPWkRw=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/lodash/download/lodash-4.17.21.tgz}
@@ -3332,7 +3388,6 @@ packages:
     name: semver
     version: 5.7.1
     hasBin: true
-    dev: true
 
   registry.nlark.com/semver/6.3.0:
     resolution: {integrity: sha1-7gpkyK9ejO6mdoexM3YeG+y9HT0=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/semver/download/semver-6.3.0.tgz}
@@ -3992,6 +4047,8 @@ packages:
       json5: registry.nlark.com/json5/2.2.0
       semver: registry.nlark.com/semver/6.3.0
       source-map: registry.nlark.com/source-map/0.5.7
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   registry.npmmirror.com/@babel/generator/7.16.0:
@@ -4091,6 +4148,8 @@ packages:
       '@babel/template': registry.npmmirror.com/@babel/template/7.16.0
       '@babel/traverse': registry.npmmirror.com/@babel/traverse/7.16.0
       '@babel/types': registry.npmmirror.com/@babel/types/7.16.0
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   registry.npmmirror.com/@babel/helper-optimise-call-expression/7.16.0:
@@ -4112,6 +4171,8 @@ packages:
       '@babel/helper-optimise-call-expression': registry.npmmirror.com/@babel/helper-optimise-call-expression/7.16.0
       '@babel/traverse': registry.npmmirror.com/@babel/traverse/7.16.0
       '@babel/types': registry.npmmirror.com/@babel/types/7.16.0
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   registry.npmmirror.com/@babel/helper-simple-access/7.16.0:
@@ -4141,6 +4202,8 @@ packages:
       '@babel/template': registry.npmmirror.com/@babel/template/7.16.0
       '@babel/traverse': registry.npmmirror.com/@babel/traverse/7.16.0
       '@babel/types': registry.npmmirror.com/@babel/types/7.16.0
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   registry.npmmirror.com/@babel/highlight/7.16.0:
@@ -4276,6 +4339,8 @@ packages:
       '@babel/types': registry.npmmirror.com/@babel/types/7.16.0
       debug: registry.nlark.com/debug/4.3.2
       globals: registry.npmmirror.com/globals/11.12.0
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   registry.npmmirror.com/@babel/types/7.16.0:
@@ -4421,7 +4486,7 @@ packages:
     version: 1.0.3
     dev: true
 
-  registry.npmmirror.com/@emotion/styled/11.3.0_f400783037ccf00f9cadfddbfc36c9d5:
+  registry.npmmirror.com/@emotion/styled/11.3.0_4e86505ff6f3e0b8d0f6b2c7f9d7b098:
     resolution: {integrity: sha1-1j7gBTfftv9hLjGw6RXFz5klogc=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@emotion/styled/download/@emotion/styled-11.3.0.tgz}
     id: registry.npmmirror.com/@emotion/styled/11.3.0
     name: '@emotion/styled'
@@ -4429,7 +4494,13 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0
       '@emotion/react': ^11.0.0-rc.0
+      '@types/react': '*'
       react: '>=16.8.0'
+    peerDependenciesMeta:
+      '@babel/core':
+        optional: true
+      '@types/react':
+        optional: true
     dependencies:
       '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.16.0
       '@emotion/babel-plugin': registry.npmmirror.com/@emotion/babel-plugin/11.3.0
@@ -4437,6 +4508,7 @@ packages:
       '@emotion/react': registry.npmmirror.com/@emotion/react/11.5.0_27d7f75f5fffc1228c129be468caca5c
       '@emotion/serialize': registry.npmmirror.com/@emotion/serialize/1.0.2
       '@emotion/utils': registry.npmmirror.com/@emotion/utils/1.0.0
+      '@types/react': registry.npmmirror.com/@types/react/17.0.34
       react: registry.npmmirror.com/react/17.0.2
     dev: true
 
@@ -4486,6 +4558,8 @@ packages:
       js-yaml: registry.nlark.com/js-yaml/3.14.1
       minimatch: registry.nlark.com/minimatch/3.0.4
       strip-json-comments: registry.nlark.com/strip-json-comments/3.1.1
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   registry.npmmirror.com/@humanwhocodes/config-array/0.6.0:
@@ -4497,6 +4571,8 @@ packages:
       '@humanwhocodes/object-schema': registry.npmmirror.com/@humanwhocodes/object-schema/1.2.1
       debug: registry.nlark.com/debug/4.3.2
       minimatch: registry.nlark.com/minimatch/3.0.4
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   registry.npmmirror.com/@humanwhocodes/object-schema/1.2.1:
@@ -4525,6 +4601,8 @@ packages:
       headers-utils: registry.npmmirror.com/headers-utils/3.0.2
       outvariant: registry.npmmirror.com/outvariant/1.2.1
       strict-event-emitter: registry.npmmirror.com/strict-event-emitter/0.2.0
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   registry.npmmirror.com/@open-draft/until/1.0.3:
@@ -4582,6 +4660,12 @@ packages:
       rollup: registry.npmmirror.com/rollup/2.59.0
     dev: true
 
+  registry.npmmirror.com/@types/crypto-js/4.0.2:
+    resolution: {integrity: sha1-RSQyWhdb+Bn+xuQlYMOJzh+5LJc=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/crypto-js/download/@types/crypto-js-4.0.2.tgz}
+    name: '@types/crypto-js'
+    version: 4.0.2
+    dev: true
+
   registry.npmmirror.com/@types/inquirer/7.3.3:
     resolution: {integrity: sha1-kuZnbvtn+mklxpou5jj2eoIpUqw=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/inquirer/download/@types/inquirer-7.3.3.tgz}
     name: '@types/inquirer'
@@ -4596,6 +4680,14 @@ packages:
     name: '@types/js-levenshtein'
     version: 1.1.0
     dev: false
+
+  registry.npmmirror.com/@types/jsonwebtoken/8.5.5:
+    resolution: {integrity: sha1-2l8vS67ojwUu8+TbTBoK+0bP8iw=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/jsonwebtoken/download/@types/jsonwebtoken-8.5.5.tgz}
+    name: '@types/jsonwebtoken'
+    version: 8.5.5
+    dependencies:
+      '@types/node': registry.npmmirror.com/@types/node/16.11.6
+    dev: true
 
   registry.npmmirror.com/@types/node/16.11.6:
     resolution: {integrity: sha1-a+96KgrWhM9ukPz+Mc7KvZzgo64=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/node/download/@types/node-16.11.6.tgz}
@@ -4665,6 +4757,8 @@ packages:
       semver: registry.nlark.com/semver/7.3.5
       tsutils: registry.nlark.com/tsutils/3.21.0_typescript@4.4.4
       typescript: registry.npmmirror.com/typescript/4.4.4
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   registry.npmmirror.com/@typescript-eslint/experimental-utils/5.3.0_eslint@8.1.0+typescript@4.4.4:
@@ -4684,6 +4778,7 @@ packages:
       eslint-scope: registry.nlark.com/eslint-scope/5.1.1
       eslint-utils: registry.nlark.com/eslint-utils/3.0.0_eslint@8.1.0
     transitivePeerDependencies:
+      - supports-color
       - typescript
     dev: true
 
@@ -4706,6 +4801,8 @@ packages:
       debug: registry.nlark.com/debug/4.3.2
       eslint: registry.npmmirror.com/eslint/8.1.0
       typescript: registry.npmmirror.com/typescript/4.4.4
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   registry.npmmirror.com/@typescript-eslint/scope-manager/5.3.0:
@@ -4745,6 +4842,8 @@ packages:
       semver: registry.nlark.com/semver/7.3.5
       tsutils: registry.nlark.com/tsutils/3.21.0_typescript@4.4.4
       typescript: registry.npmmirror.com/typescript/4.4.4
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   registry.npmmirror.com/@typescript-eslint/visitor-keys/5.3.0:
@@ -4771,6 +4870,8 @@ packages:
       '@rollup/pluginutils': registry.nlark.com/@rollup/pluginutils/4.1.1
       react-refresh: registry.npmmirror.com/react-refresh/0.10.0
       resolve: registry.nlark.com/resolve/1.20.0
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   registry.npmmirror.com/antd/4.16.13_react-dom@17.0.2+react@17.0.2:
@@ -4888,6 +4989,12 @@ packages:
       picocolors: registry.npmmirror.com/picocolors/1.0.0
     dev: true
 
+  registry.npmmirror.com/buffer-equal-constant-time/1.0.1:
+    resolution: {integrity: sha1-+OcRMvf/5uAaXJaXpMbz5I1cyBk=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/buffer-equal-constant-time/download/buffer-equal-constant-time-1.0.1.tgz}
+    name: buffer-equal-constant-time
+    version: 1.0.1
+    dev: false
+
   registry.npmmirror.com/cachedir/2.2.0:
     resolution: {integrity: sha1-Ga+kMF4F155BdWaILgyPlg9i/w4=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/cachedir/download/cachedir-2.2.0.tgz}
     name: cachedir
@@ -4982,6 +5089,12 @@ packages:
     dev: true
     optional: true
 
+  registry.npmmirror.com/crypto-js/4.1.1:
+    resolution: {integrity: sha1-nkhbzwNSEEG9hYRHhrg/t2GXNs8=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/crypto-js/download/crypto-js-4.1.1.tgz}
+    name: crypto-js
+    version: 4.1.1
+    dev: false
+
   registry.npmmirror.com/date-fns/2.25.0:
     resolution: {integrity: sha1-jFyPHZWL44CamgP0t0LrqJT8VoA=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/date-fns/download/date-fns-2.25.0.tgz}
     name: date-fns
@@ -5008,6 +5121,14 @@ packages:
     version: 6.0.0
     engines: {node: '>=8'}
     dev: true
+
+  registry.npmmirror.com/ecdsa-sig-formatter/1.0.11:
+    resolution: {integrity: sha1-rg8PothQRe8UqBfao86azQSJ5b8=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/ecdsa-sig-formatter/download/ecdsa-sig-formatter-1.0.11.tgz}
+    name: ecdsa-sig-formatter
+    version: 1.0.11
+    dependencies:
+      safe-buffer: registry.nlark.com/safe-buffer/5.2.1
+    dev: false
 
   registry.npmmirror.com/electron-to-chromium/1.3.889:
     resolution: {integrity: sha1-C3xvdihVlZLVQG3tooF4jzcQd5A=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/electron-to-chromium/download/electron-to-chromium-1.3.889.tgz}
@@ -5321,6 +5442,8 @@ packages:
       strip-json-comments: registry.nlark.com/strip-json-comments/3.1.1
       text-table: registry.nlark.com/text-table/0.2.0
       v8-compile-cache: registry.nlark.com/v8-compile-cache/2.3.0
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   registry.npmmirror.com/estraverse/4.3.0:
@@ -5437,6 +5560,13 @@ packages:
     dependencies:
       type-fest: registry.npmmirror.com/type-fest/0.20.2
     dev: true
+
+  registry.npmmirror.com/graceful-fs/4.2.8:
+    resolution: {integrity: sha1-5BK40z9eAGWTy9PO5t+fLOu+gCo=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/graceful-fs/download/graceful-fs-4.2.8.tgz}
+    name: graceful-fs
+    version: 4.2.8
+    dev: true
+    optional: true
 
   registry.npmmirror.com/graphql/15.7.2:
     resolution: {integrity: sha1-hasO64NyKXcVGz/rTWMbXyqyh+8=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/graphql/download/graphql-15.7.2.tgz}
@@ -5558,6 +5688,34 @@ packages:
     version: 0.8.0
     dev: false
 
+  registry.npmmirror.com/jsonwebtoken/8.5.1:
+    resolution: {integrity: sha1-AOceC431TCEhofJhN98igGc7zA0=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/jsonwebtoken/download/jsonwebtoken-8.5.1.tgz}
+    name: jsonwebtoken
+    version: 8.5.1
+    engines: {node: '>=4', npm: '>=1.4.28'}
+    dependencies:
+      jws: registry.nlark.com/jws/3.2.2
+      lodash.includes: registry.npmmirror.com/lodash.includes/4.3.0
+      lodash.isboolean: registry.npmmirror.com/lodash.isboolean/3.0.3
+      lodash.isinteger: registry.nlark.com/lodash.isinteger/4.0.4
+      lodash.isnumber: registry.npmmirror.com/lodash.isnumber/3.0.3
+      lodash.isplainobject: registry.nlark.com/lodash.isplainobject/4.0.6
+      lodash.isstring: registry.npmmirror.com/lodash.isstring/4.0.1
+      lodash.once: registry.nlark.com/lodash.once/4.1.1
+      ms: registry.npmmirror.com/ms/2.1.2
+      semver: registry.nlark.com/semver/5.7.1
+    dev: false
+
+  registry.npmmirror.com/jwa/1.4.1:
+    resolution: {integrity: sha1-dDwymFy56YZVUw1TZBtmyGRbA5o=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/jwa/download/jwa-1.4.1.tgz}
+    name: jwa
+    version: 1.4.1
+    dependencies:
+      buffer-equal-constant-time: registry.npmmirror.com/buffer-equal-constant-time/1.0.1
+      ecdsa-sig-formatter: registry.npmmirror.com/ecdsa-sig-formatter/1.0.11
+      safe-buffer: registry.nlark.com/safe-buffer/5.2.1
+    dev: false
+
   registry.npmmirror.com/lint-staged/11.2.6:
     resolution: {integrity: sha1-9HexrwKU2wVOWTfxcWed9juqTEM=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/lint-staged/download/lint-staged-11.2.6.tgz}
     name: lint-staged
@@ -5568,7 +5726,7 @@ packages:
       colorette: registry.npmmirror.com/colorette/1.4.0
       commander: registry.npmmirror.com/commander/8.3.0
       cosmiconfig: registry.nlark.com/cosmiconfig/7.0.1
-      debug: registry.nlark.com/debug/4.3.2
+      debug: registry.nlark.com/debug/4.3.2_supports-color@8.1.1
       enquirer: registry.nlark.com/enquirer/2.3.6
       execa: registry.nlark.com/execa/5.1.1
       listr2: registry.npmmirror.com/listr2/3.13.3_enquirer@2.3.6
@@ -5606,6 +5764,30 @@ packages:
     version: 4.4.2
     dev: true
     optional: true
+
+  registry.npmmirror.com/lodash.includes/4.3.0:
+    resolution: {integrity: sha1-YLuYqHy5I8aMoeUTJUgzFISfVT8=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/lodash.includes/download/lodash.includes-4.3.0.tgz}
+    name: lodash.includes
+    version: 4.3.0
+    dev: false
+
+  registry.npmmirror.com/lodash.isboolean/3.0.3:
+    resolution: {integrity: sha1-bC4XHbKiV82WgC/UOwGyDV9YcPY=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/lodash.isboolean/download/lodash.isboolean-3.0.3.tgz}
+    name: lodash.isboolean
+    version: 3.0.3
+    dev: false
+
+  registry.npmmirror.com/lodash.isnumber/3.0.3:
+    resolution: {integrity: sha1-POdoEMWSjQM1IwGsKHMX8RwLH/w=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/lodash.isnumber/download/lodash.isnumber-3.0.3.tgz}
+    name: lodash.isnumber
+    version: 3.0.3
+    dev: false
+
+  registry.npmmirror.com/lodash.isstring/4.0.1:
+    resolution: {integrity: sha1-1SfftUVuynzJu5XV2ur4i6VKVFE=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/lodash.isstring/download/lodash.isstring-4.0.1.tgz}
+    name: lodash.isstring
+    version: 4.0.1
+    dev: false
 
   registry.npmmirror.com/log-update/4.0.0:
     resolution: {integrity: sha1-WJ7NNSRx8qHAxXAodUOmTf0g4KE=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/log-update/download/log-update-4.0.0.tgz}
@@ -5687,6 +5869,8 @@ packages:
       strict-event-emitter: registry.npmmirror.com/strict-event-emitter/0.2.0
       type-fest: registry.npmmirror.com/type-fest/1.4.0
       yargs: registry.npmmirror.com/yargs/17.2.1
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   registry.npmmirror.com/nano-time/1.0.0:

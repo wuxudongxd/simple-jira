@@ -1,6 +1,6 @@
 import { useQueryClient, useQuery } from "react-query";
 import * as auth from "utils/auth-provider";
-import { User } from "types/user";
+import { User } from "src/types";
 
 interface AuthForm {
   username: string;

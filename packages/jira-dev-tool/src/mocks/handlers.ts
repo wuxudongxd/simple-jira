@@ -1,17 +1,14 @@
 // src/mocks/handlers.js
 import { rest } from "msw";
 import { getItem, setItem } from "localforage";
+import md5 from "crypto-js/md5";
+import jwt from "jsonwebtoken";
 
 const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
+const secret = "FWB4*FcK*D^DGYm&kz%8T*Q";
 
-console.log("MSW - apiUrl: " + apiUrl);
-
-interface IUser {
-  id: number;
-  name: string;
-}
-interface IUserFields {
-  name: string;
+interface IAdmin {
+  username: string;
   password: string;
 }
 
@@ -21,64 +18,65 @@ const getToken = (req: any): string =>
 export async function getUser(req: any) {
   const token = getToken(req);
   if (!token) {
-    const error = new Error("A token must be provided");
-    // error.status = 401;
-    throw error;
+    throw new Error("A token must be provided");
   }
-  let userId: number = 0;
+  let username: string = "";
   try {
-    userId = Number(atob(token));
+    username = jwt.verify(token, secret) as string;
+    let users: IAdmin[] | null = await getItem("admin");
+    return users?.find((u) => u.username === username);
   } catch (e) {
-    const error = new Error("Invalid token. Please login again.");
-    // error.status = 401;
-    throw error;
+    throw new Error("Invalid token. Please login again.");
   }
-  let users: IUser[] | null = await getItem("admin");
-  return users?.find((u: IUser) => u.id === userId);
 }
 
 export const userHandlers = [
   rest.get(`${apiUrl}/me`, async (req, res, ctx) => {
     const user = await getUser(req);
-    const token = getToken(req);
-    return res(ctx.json({ user: { ...user, token } }));
+    if (user) {
+      return res(ctx.json(user.username));
+    } else {
+      return res(
+        ctx.status(400),
+        ctx.json({ message: "Invalid token. Please login again." })
+      );
+    }
   }),
   rest.post(`${apiUrl}/login`, async (req, res, ctx) => {
-    const { username, password } = req.body as any;
-    const userFields = { name: username, password };
+    const { username, password } = req.body as IAdmin;
     try {
-      let users: IUserFields[] | null = await getItem("admin");
-      let admin = users?.find((u) => u.password === userFields.password);
+      let users: IAdmin[] | null = await getItem("admin");
+      let admin = users?.find(
+        (u) =>
+          u.username === username && u.password === md5(password).toString()
+      );
       if (!admin) {
         return res(ctx.json("用户名或密码错误"));
       }
     } catch (error: any) {
       return res(ctx.status(400), ctx.json({ message: error.message }));
     }
-    return res(ctx.json(userFields.name));
+    const token = jwt.sign(username, secret);
+    return res(ctx.json({ username, token }));
   }),
 
   rest.post(`${apiUrl}/register`, async (req, res, ctx) => {
-    const { username, password } = req.body as any;
-    const userFields = { name: username, password };
-
+    const { username, password } = req.body as IAdmin;
     try {
-      let users: IUserFields[] | null = await getItem("admin");
-      let admin = users?.find((u) => u.password === userFields.password);
+      let users: IAdmin[] | null = await getItem("admin");
+      let admin = users?.find((u) => u.username === username);
       if (admin) {
         throw new Error("此用户已注册");
       } else {
         users = users ?? [];
-        await setItem("admin", [...users, userFields]);
+        const md5Pwd = md5(password).toString();
+        await setItem("admin", [...users, { username, md5Pwd }]);
       }
     } catch (error: any) {
       return res(ctx.status(400), ctx.json({ message: error.message }));
     }
-    return res(ctx.json(userFields.name));
-  }),
-
-  rest.get(`/hhh`, (req, res, ctx) => {
-    return res(ctx.json({ hhh: 111 }));
+    const token = jwt.sign(username, secret);
+    return res(ctx.json({ username, token }));
   }),
 ];
 
