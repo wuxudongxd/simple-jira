@@ -1,17 +1,44 @@
 import { worker } from "./mocks/browser";
+import { getItem, setItem, clear } from "localforage";
+import db from "./initial.json";
+
+const IsInitial = true;
 
 function DevTool(foo: () => void) {
-  if (process.env.NODE_ENV === "development") {
+  if (import.meta.env.DEV) {
     worker.start({
       onUnhandledRequest: "bypass",
     });
-    console.log("mock worker started");
-    
+    worker.printHandlers();
+    CheckInitial(db);
   }
-  console.log("dev tool");
-  console.log(process.env.NODE_ENV);
 
   foo();
+}
+
+/**
+ * check is the db initialed
+ */
+async function CheckInitial(db: any) {
+  try {
+    let initial = await getItem("initial");
+    if (!initial) {
+      await InitialDB(db);
+    }
+  } catch (error) {
+    console.log("initial DB error: " + error);
+  }
+}
+
+/**
+ * initial db from json data
+ */
+async function InitialDB(db: any) {
+  await clear();
+  await setItem("initial", true);
+  for (const item of Object.keys(db)) {
+    await setItem(item, db[item]);
+  }
 }
 
 export default DevTool;

@@ -30,10 +30,6 @@ const buildEsm = {
       mainFields: ["module", "main", "jsnext:main"],
       extensions,
     }),
-    // replace({
-    //   preventAssignment: true,
-    //   "process.env.NODE_ENV": JSON.stringify("development"),
-    // }),
     typescript({
       useTsconfigDeclarationDir: true,
     }),
@@ -59,10 +55,6 @@ const buildCjs = {
       preferBuiltins: false,
       extensions,
     }),
-    // replace({
-    //   preventAssignment: true,
-    //   "process.env.NODE_ENV": JSON.stringify("development"),
-    // }),
     typescript({
       useTsconfigDeclarationDir: true,
     }),
