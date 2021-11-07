@@ -45,14 +45,20 @@ export const userHandlers = [
   }),
   rest.post(`${apiUrl}/login`, async (req, res, ctx) => {
     const { username, password } = req.body as IAdmin;
+    console.log("login", username, password, md5(password).toString());
+
     try {
       let users: IAdmin[] | null = await getItem("admin");
       let admin = users?.find(
         (u) =>
           u.username === username && u.password === md5(password).toString()
       );
+      console.log(users);
+
+      console.log(admin);
+
       if (!admin) {
-        return res(ctx.json("用户名或密码错误"));
+        return res(ctx.status(400), ctx.json("用户名或密码错误"));
       }
     } catch (error: any) {
       return res(ctx.status(400), ctx.json({ message: error.message }));
@@ -72,7 +78,7 @@ export const userHandlers = [
       } else {
         users = users ?? [];
         const md5Pwd = md5(password).toString();
-        await setItem("admin", [...users, { username, md5Pwd }]);
+        await setItem("admin", [...users, { username, password: md5Pwd }]);
       }
     } catch (error: any) {
       return res(ctx.status(400), ctx.json({ message: error.message }));
@@ -81,7 +87,7 @@ export const userHandlers = [
     const token = username;
     console.log("username: ", username);
     console.log("token: ", token);
-    
+
     return res(ctx.json({ username, token }));
   }),
 ];

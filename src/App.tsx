@@ -14,13 +14,12 @@ const UnauthenticatedApp = React.lazy(
 
 function App() {
   const bootstrapUser = async () => {
-    let user = null;
+    let data = null;
     const token = auth.getToken();
     if (token) {
-      const data = await http("me", { token });
-      user = data.user;
+      data = await http("me", { token });
     }
-    return user;
+    return data;
   };
 
   const result = useQuery("auth", bootstrapUser);
@@ -29,7 +28,9 @@ function App() {
     <div className="App">
       <ErrorBoundary fallbackRender={FullPageErrorFallback}>
         <React.Suspense fallback={<FullPageLoading />}>
-          {result.data ? <AuthenticatedApp /> : <UnauthenticatedApp />}
+          {result.isLoading && <span>Loading...</span>}
+          {!result.data && <UnauthenticatedApp />}
+          {result.data && <AuthenticatedApp />}
         </React.Suspense>
       </ErrorBoundary>
     </div>
