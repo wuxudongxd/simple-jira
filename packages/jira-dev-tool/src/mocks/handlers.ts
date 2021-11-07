@@ -1,8 +1,8 @@
 // src/mocks/handlers.js
 import { rest } from "msw";
 import { getItem, setItem } from "localforage";
-import md5 from "crypto-js/md5";
-import jwt from "jsonwebtoken";
+import { md5 } from "pure-md5";
+// import { SignJWT, jwtVerify } from "jose";
 
 const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
 const secret = "FWB4*FcK*D^DGYm&kz%8T*Q";
@@ -20,11 +20,12 @@ export async function getUser(req: any) {
   if (!token) {
     throw new Error("A token must be provided");
   }
-  let username: string = "";
   try {
-    username = jwt.verify(token, secret) as string;
+    // const { payload } = await jwtVerify(token, { type: secret });
+    // console.log(payload);
+    const payload = token;
     let users: IAdmin[] | null = await getItem("admin");
-    return users?.find((u) => u.username === username);
+    return users?.find((u) => u.username === payload);
   } catch (e) {
     throw new Error("Invalid token. Please login again.");
   }
@@ -56,7 +57,8 @@ export const userHandlers = [
     } catch (error: any) {
       return res(ctx.status(400), ctx.json({ message: error.message }));
     }
-    const token = jwt.sign(username, secret);
+    // const token = await new SignJWT({ username }).sign({ type: secret });
+    const token = username;
     return res(ctx.json({ username, token }));
   }),
 
@@ -75,7 +77,11 @@ export const userHandlers = [
     } catch (error: any) {
       return res(ctx.status(400), ctx.json({ message: error.message }));
     }
-    const token = jwt.sign(username, secret);
+    // const token = await new SignJWT({ username }).sign({ type: secret });
+    const token = username;
+    console.log("username: ", username);
+    console.log("token: ", token);
+    
     return res(ctx.json({ username, token }));
   }),
 ];

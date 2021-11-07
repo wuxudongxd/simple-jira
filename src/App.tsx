@@ -22,7 +22,7 @@ function App() {
     }
     return user;
   };
-  
+
   const result = useQuery("auth", bootstrapUser);
 
   return (

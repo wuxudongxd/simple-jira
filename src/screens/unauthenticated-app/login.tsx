@@ -1,6 +1,6 @@
 import { Form, Input } from "antd";
 import { LongButton } from "./index";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import * as auth from "utils/auth-provider";
 import { AuthForm } from "src/types";
 
@@ -21,6 +21,11 @@ export const LoginScreen = ({
       onError(e);
     }
   };
+
+  if (mutation.isSuccess) {
+    useQueryClient().setQueryData("auth", mutation.data);
+    console.log("login success");
+  }
 
   return (
     <Form onFinish={handleSubmit}>

@@ -66,27 +66,23 @@ importers:
       '@rollup/plugin-commonjs': ^21.0.1
       '@rollup/plugin-json': ^4.1.0
       '@rollup/plugin-node-resolve': ^13.0.6
-      '@types/crypto-js': ^4.0.2
-      '@types/jsonwebtoken': ^8.5.5
-      crypto-js: ^4.1.1
-      jsonwebtoken: ^8.5.1
+      jose: ^4.1.5
       localforage: ^1.10.0
       msw: ^0.35.0
+      pure-md5: ^0.1.13
       rollup: ^2.59.0
       rollup-plugin-typescript2: ^0.30.0
       tslib: ^2.3.1
       typescript: ^4.4.4
     dependencies:
-      crypto-js: registry.npmmirror.com/crypto-js/4.1.1
-      jsonwebtoken: registry.npmmirror.com/jsonwebtoken/8.5.1
+      jose: registry.npmmirror.com/jose/4.1.5
       localforage: registry.nlark.com/localforage/1.10.0
       msw: registry.npmmirror.com/msw/0.35.0
+      pure-md5: registry.npmmirror.com/pure-md5/0.1.13
     devDependencies:
       '@rollup/plugin-commonjs': registry.npmmirror.com/@rollup/plugin-commonjs/21.0.1_rollup@2.59.0
       '@rollup/plugin-json': registry.npmmirror.com/@rollup/plugin-json/4.1.0_rollup@2.59.0
       '@rollup/plugin-node-resolve': registry.npmmirror.com/@rollup/plugin-node-resolve/13.0.6_rollup@2.59.0
-      '@types/crypto-js': registry.npmmirror.com/@types/crypto-js/4.0.2
-      '@types/jsonwebtoken': registry.npmmirror.com/@types/jsonwebtoken/8.5.5
       rollup: registry.npmmirror.com/rollup/2.59.0
       rollup-plugin-typescript2: registry.nlark.com/rollup-plugin-typescript2/0.30.0_rollup@2.59.0+typescript@4.4.4
       tslib: registry.nlark.com/tslib/2.3.1
@@ -2154,7 +2150,7 @@ packages:
     name: jsonfile
     version: 4.0.0
     optionalDependencies:
-      graceful-fs: registry.npmmirror.com/graceful-fs/4.2.8
+      graceful-fs: registry.nlark.com/graceful-fs/4.2.8
     dev: true
 
   registry.nlark.com/jsonparse/1.3.1:
@@ -2173,15 +2169,6 @@ packages:
       array-includes: registry.npmmirror.com/array-includes/3.1.4
       object.assign: registry.nlark.com/object.assign/4.1.2
     dev: true
-
-  registry.nlark.com/jws/3.2.2:
-    resolution: {integrity: sha1-ABCZ82OUaMlBQADpmZX6UvtHgwQ=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/jws/download/jws-3.2.2.tgz}
-    name: jws
-    version: 3.2.2
-    dependencies:
-      jwa: registry.npmmirror.com/jwa/1.4.1
-      safe-buffer: registry.nlark.com/safe-buffer/5.2.1
-    dev: false
 
   registry.nlark.com/kind-of/6.0.3:
     resolution: {integrity: sha1-B8BQNKbDSfoG4k+jWqdttFgM5N0=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/kind-of/download/kind-of-6.0.3.tgz}
@@ -2253,23 +2240,11 @@ packages:
       p-locate: registry.nlark.com/p-locate/4.1.0
     dev: true
 
-  registry.nlark.com/lodash.isinteger/4.0.4:
-    resolution: {integrity: sha1-YZwK89A/iwTDH1iChAt3sRzWg0M=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/lodash.isinteger/download/lodash.isinteger-4.0.4.tgz}
-    name: lodash.isinteger
-    version: 4.0.4
-    dev: false
-
   registry.nlark.com/lodash.ismatch/4.4.0:
     resolution: {integrity: sha1-dWy1FQyjum8RCFp4hJZF8Yj4Xzc=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/lodash.ismatch/download/lodash.ismatch-4.4.0.tgz}
     name: lodash.ismatch
     version: 4.4.0
     dev: true
-
-  registry.nlark.com/lodash.isplainobject/4.0.6:
-    resolution: {integrity: sha1-fFJqUtibRcRcxpC4gWO+BJf1UMs=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/lodash.isplainobject/download/lodash.isplainobject-4.0.6.tgz}
-    name: lodash.isplainobject
-    version: 4.0.6
-    dev: false
 
   registry.nlark.com/lodash.map/4.6.0:
     resolution: {integrity: sha1-dx7Hg540c9nEzeKLGTlMNWL09tM=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/lodash.map/download/lodash.map-4.6.0.tgz}
@@ -2282,12 +2257,6 @@ packages:
     name: lodash.merge
     version: 4.6.2
     dev: true
-
-  registry.nlark.com/lodash.once/4.1.1:
-    resolution: {integrity: sha1-DdOXEhPHxW34gJd9UEyI+0cal6w=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/lodash.once/download/lodash.once-4.1.1.tgz}
-    name: lodash.once
-    version: 4.1.1
-    dev: false
 
   registry.nlark.com/lodash/4.17.21:
     resolution: {integrity: sha1-Z5WRxWTDv/quhFTPCz3zcMPWkRw=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/lodash/download/lodash-4.17.21.tgz}
@@ -3388,6 +3357,7 @@ packages:
     name: semver
     version: 5.7.1
     hasBin: true
+    dev: true
 
   registry.nlark.com/semver/6.3.0:
     resolution: {integrity: sha1-7gpkyK9ejO6mdoexM3YeG+y9HT0=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/semver/download/semver-6.3.0.tgz}
@@ -4660,12 +4630,6 @@ packages:
       rollup: registry.npmmirror.com/rollup/2.59.0
     dev: true
 
-  registry.npmmirror.com/@types/crypto-js/4.0.2:
-    resolution: {integrity: sha1-RSQyWhdb+Bn+xuQlYMOJzh+5LJc=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/crypto-js/download/@types/crypto-js-4.0.2.tgz}
-    name: '@types/crypto-js'
-    version: 4.0.2
-    dev: true
-
   registry.npmmirror.com/@types/inquirer/7.3.3:
     resolution: {integrity: sha1-kuZnbvtn+mklxpou5jj2eoIpUqw=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/inquirer/download/@types/inquirer-7.3.3.tgz}
     name: '@types/inquirer'
@@ -4680,14 +4644,6 @@ packages:
     name: '@types/js-levenshtein'
     version: 1.1.0
     dev: false
-
-  registry.npmmirror.com/@types/jsonwebtoken/8.5.5:
-    resolution: {integrity: sha1-2l8vS67ojwUu8+TbTBoK+0bP8iw=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/jsonwebtoken/download/@types/jsonwebtoken-8.5.5.tgz}
-    name: '@types/jsonwebtoken'
-    version: 8.5.5
-    dependencies:
-      '@types/node': registry.npmmirror.com/@types/node/16.11.6
-    dev: true
 
   registry.npmmirror.com/@types/node/16.11.6:
     resolution: {integrity: sha1-a+96KgrWhM9ukPz+Mc7KvZzgo64=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/node/download/@types/node-16.11.6.tgz}
@@ -4989,12 +4945,6 @@ packages:
       picocolors: registry.npmmirror.com/picocolors/1.0.0
     dev: true
 
-  registry.npmmirror.com/buffer-equal-constant-time/1.0.1:
-    resolution: {integrity: sha1-+OcRMvf/5uAaXJaXpMbz5I1cyBk=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/buffer-equal-constant-time/download/buffer-equal-constant-time-1.0.1.tgz}
-    name: buffer-equal-constant-time
-    version: 1.0.1
-    dev: false
-
   registry.npmmirror.com/cachedir/2.2.0:
     resolution: {integrity: sha1-Ga+kMF4F155BdWaILgyPlg9i/w4=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/cachedir/download/cachedir-2.2.0.tgz}
     name: cachedir
@@ -5089,12 +5039,6 @@ packages:
     dev: true
     optional: true
 
-  registry.npmmirror.com/crypto-js/4.1.1:
-    resolution: {integrity: sha1-nkhbzwNSEEG9hYRHhrg/t2GXNs8=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/crypto-js/download/crypto-js-4.1.1.tgz}
-    name: crypto-js
-    version: 4.1.1
-    dev: false
-
   registry.npmmirror.com/date-fns/2.25.0:
     resolution: {integrity: sha1-jFyPHZWL44CamgP0t0LrqJT8VoA=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/date-fns/download/date-fns-2.25.0.tgz}
     name: date-fns
@@ -5121,14 +5065,6 @@ packages:
     version: 6.0.0
     engines: {node: '>=8'}
     dev: true
-
-  registry.npmmirror.com/ecdsa-sig-formatter/1.0.11:
-    resolution: {integrity: sha1-rg8PothQRe8UqBfao86azQSJ5b8=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/ecdsa-sig-formatter/download/ecdsa-sig-formatter-1.0.11.tgz}
-    name: ecdsa-sig-formatter
-    version: 1.0.11
-    dependencies:
-      safe-buffer: registry.nlark.com/safe-buffer/5.2.1
-    dev: false
 
   registry.npmmirror.com/electron-to-chromium/1.3.889:
     resolution: {integrity: sha1-C3xvdihVlZLVQG3tooF4jzcQd5A=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/electron-to-chromium/download/electron-to-chromium-1.3.889.tgz}
@@ -5561,13 +5497,6 @@ packages:
       type-fest: registry.npmmirror.com/type-fest/0.20.2
     dev: true
 
-  registry.npmmirror.com/graceful-fs/4.2.8:
-    resolution: {integrity: sha1-5BK40z9eAGWTy9PO5t+fLOu+gCo=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/graceful-fs/download/graceful-fs-4.2.8.tgz}
-    name: graceful-fs
-    version: 4.2.8
-    dev: true
-    optional: true
-
   registry.npmmirror.com/graphql/15.7.2:
     resolution: {integrity: sha1-hasO64NyKXcVGz/rTWMbXyqyh+8=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/graphql/download/graphql-15.7.2.tgz}
     name: graphql
@@ -5682,38 +5611,16 @@ packages:
       call-bind: registry.nlark.com/call-bind/1.0.2
     dev: true
 
+  registry.npmmirror.com/jose/4.1.5:
+    resolution: {integrity: sha1-/Ggfibn+5hjuvleaST/tRtt42ZA=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/jose/download/jose-4.1.5.tgz}
+    name: jose
+    version: 4.1.5
+    dev: false
+
   registry.npmmirror.com/js-sha3/0.8.0:
     resolution: {integrity: sha1-ubel2nOvrX3t0PjEY5VMveaBiEA=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/js-sha3/download/js-sha3-0.8.0.tgz}
     name: js-sha3
     version: 0.8.0
-    dev: false
-
-  registry.npmmirror.com/jsonwebtoken/8.5.1:
-    resolution: {integrity: sha1-AOceC431TCEhofJhN98igGc7zA0=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/jsonwebtoken/download/jsonwebtoken-8.5.1.tgz}
-    name: jsonwebtoken
-    version: 8.5.1
-    engines: {node: '>=4', npm: '>=1.4.28'}
-    dependencies:
-      jws: registry.nlark.com/jws/3.2.2
-      lodash.includes: registry.npmmirror.com/lodash.includes/4.3.0
-      lodash.isboolean: registry.npmmirror.com/lodash.isboolean/3.0.3
-      lodash.isinteger: registry.nlark.com/lodash.isinteger/4.0.4
-      lodash.isnumber: registry.npmmirror.com/lodash.isnumber/3.0.3
-      lodash.isplainobject: registry.nlark.com/lodash.isplainobject/4.0.6
-      lodash.isstring: registry.npmmirror.com/lodash.isstring/4.0.1
-      lodash.once: registry.nlark.com/lodash.once/4.1.1
-      ms: registry.npmmirror.com/ms/2.1.2
-      semver: registry.nlark.com/semver/5.7.1
-    dev: false
-
-  registry.npmmirror.com/jwa/1.4.1:
-    resolution: {integrity: sha1-dDwymFy56YZVUw1TZBtmyGRbA5o=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/jwa/download/jwa-1.4.1.tgz}
-    name: jwa
-    version: 1.4.1
-    dependencies:
-      buffer-equal-constant-time: registry.npmmirror.com/buffer-equal-constant-time/1.0.1
-      ecdsa-sig-formatter: registry.npmmirror.com/ecdsa-sig-formatter/1.0.11
-      safe-buffer: registry.nlark.com/safe-buffer/5.2.1
     dev: false
 
   registry.npmmirror.com/lint-staged/11.2.6:
@@ -5764,30 +5671,6 @@ packages:
     version: 4.4.2
     dev: true
     optional: true
-
-  registry.npmmirror.com/lodash.includes/4.3.0:
-    resolution: {integrity: sha1-YLuYqHy5I8aMoeUTJUgzFISfVT8=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/lodash.includes/download/lodash.includes-4.3.0.tgz}
-    name: lodash.includes
-    version: 4.3.0
-    dev: false
-
-  registry.npmmirror.com/lodash.isboolean/3.0.3:
-    resolution: {integrity: sha1-bC4XHbKiV82WgC/UOwGyDV9YcPY=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/lodash.isboolean/download/lodash.isboolean-3.0.3.tgz}
-    name: lodash.isboolean
-    version: 3.0.3
-    dev: false
-
-  registry.npmmirror.com/lodash.isnumber/3.0.3:
-    resolution: {integrity: sha1-POdoEMWSjQM1IwGsKHMX8RwLH/w=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/lodash.isnumber/download/lodash.isnumber-3.0.3.tgz}
-    name: lodash.isnumber
-    version: 3.0.3
-    dev: false
-
-  registry.npmmirror.com/lodash.isstring/4.0.1:
-    resolution: {integrity: sha1-1SfftUVuynzJu5XV2ur4i6VKVFE=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/lodash.isstring/download/lodash.isstring-4.0.1.tgz}
-    name: lodash.isstring
-    version: 4.0.1
-    dev: false
 
   registry.npmmirror.com/log-update/4.0.0:
     resolution: {integrity: sha1-WJ7NNSRx8qHAxXAodUOmTf0g4KE=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/log-update/download/log-update-4.0.0.tgz}
@@ -6052,6 +5935,12 @@ packages:
       picocolors: registry.npmmirror.com/picocolors/1.0.0
       source-map-js: registry.npmmirror.com/source-map-js/0.6.2
     dev: true
+
+  registry.npmmirror.com/pure-md5/0.1.13:
+    resolution: {integrity: sha1-1Vwc2A3R5jTVCSxCRWWGlKean+I=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/pure-md5/download/pure-md5-0.1.13.tgz}
+    name: pure-md5
+    version: 0.1.13
+    dev: false
 
   registry.npmmirror.com/qs/6.10.1:
     resolution: {integrity: sha1-STFIL6jWR6Wqt5nFJx0hM7mB+2o=, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/qs/download/qs-6.10.1.tgz}

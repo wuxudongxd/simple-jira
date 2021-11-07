@@ -33,7 +33,6 @@ export const RegisterScreen = ({
   if (mutation.isSuccess) {
     useQueryClient().setQueryData("auth", mutation.data);
     console.log("register success");
-    
   }
 
   return (
