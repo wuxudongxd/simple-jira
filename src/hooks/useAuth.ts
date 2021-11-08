@@ -1,11 +1,6 @@
-import { useQueryClient, useQuery } from "react-query";
+import { useQueryClient, useMutation } from "react-query";
 import * as auth from "utils/auth-provider";
-import { User } from "src/types";
-
-interface AuthForm {
-  username: string;
-  password: string;
-}
+import { AuthForm, User } from "src/types";
 
 /**
  * 提供对认证用户信息的获取
@@ -17,18 +12,30 @@ export const useAuth = () => {
 /**
  * 注册
  */
-export const register = (form: AuthForm) => {
-  return useQuery("auth", () => auth.register(form));
+export const useRegister = () => {
+  const mutation = useMutation((form: AuthForm) => auth.register(form));
+  const queryClient = useQueryClient();
+  if (mutation.isSuccess) {
+    queryClient.invalidateQueries("auth");
+  }
+  return mutation;
 };
 
 /**
  * 登录
  */
-export const login = (form: AuthForm) => {
-  return useQuery("auth", () => auth.login(form));
-}
-
+export const useLogin = () => {
+  const mutation = useMutation((form: AuthForm) => auth.login(form));
+  const queryClient = useQueryClient();
+  if (mutation.isSuccess) {
+    queryClient.invalidateQueries("auth");
+  }
+  return mutation;
+};
 
 /**
  * 注销
  */
+export const useLogout = () => {
+  auth.logout().then(useQueryClient().clear);
+};

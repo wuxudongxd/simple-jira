@@ -1,25 +1,18 @@
 import { Form, Input } from "antd";
 import { LongButton } from "./index";
-import { useMutation, useQueryClient } from "react-query";
-import * as auth from "utils/auth-provider";
 import { AuthForm } from "src/types";
+import { useRegister } from "hooks/useAuth";
 
 export const RegisterScreen = ({
   onError,
 }: {
   onError: (error: Error) => void;
 }) => {
-  const mutation = useMutation((form: AuthForm) => auth.register(form));
-  const queryClient = useQueryClient();
-
+  const mutation = useRegister();
   const handleSubmit = async ({
     password2,
     ...values
-  }: {
-    username: string;
-    password: string;
-    password2: string;
-  }) => {
+  }: AuthForm & { password2: string }) => {
     if (password2 !== values.password) {
       onError(new Error("请确认两次输入的密码相同"));
       return;
@@ -30,10 +23,6 @@ export const RegisterScreen = ({
       onError(e);
     }
   };
-
-  if (mutation.isSuccess) {
-    queryClient.invalidateQueries("auth");
-  }
 
   return (
     <Form onFinish={handleSubmit}>
