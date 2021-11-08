@@ -21,16 +21,16 @@ function App() {
     }
     return data;
   };
-
-  const result = useQuery("auth", bootstrapUser);
+  const result = useQuery("auth", bootstrapUser, {
+    retry: 0,
+  });
 
   return (
     <div className="App">
       <ErrorBoundary fallbackRender={FullPageErrorFallback}>
         <React.Suspense fallback={<FullPageLoading />}>
-          {result.isLoading && <span>Loading...</span>}
-          {!result.data && <UnauthenticatedApp />}
-          {result.data && <AuthenticatedApp />}
+          {!result.isFetching && !result.data && <UnauthenticatedApp />}
+          {result.isSuccess && result.data && <AuthenticatedApp />}
         </React.Suspense>
       </ErrorBoundary>
     </div>
