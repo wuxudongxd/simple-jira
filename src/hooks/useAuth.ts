@@ -1,11 +1,30 @@
 import { useQueryClient, useMutation } from "react-query";
 import * as auth from "utils/auth-provider";
 import { AuthForm, User } from "src/types";
+import { useQuery } from "react-query";
+import { http } from "utils/http";
+
+/**
+ * 通过本地存储的token进行认证
+ */
+export const useAuth = () => {
+  const bootstrapUser = async () => {
+    let data = null;
+    const token = auth.getToken();
+    if (token) {
+      data = await http("me", { token });
+    }
+    return data;
+  };
+  return useQuery("auth", bootstrapUser, {
+    retry: 0,
+  });
+};
 
 /**
  * 提供对认证用户信息的获取
  */
-export const useAuth = () => {
+export const useAdminInfo = () => {
   return useQueryClient().getQueryData("auth") as User;
 };
 

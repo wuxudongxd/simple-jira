@@ -1,9 +1,7 @@
 import React from "react";
 import { ErrorBoundary } from "src/components/error-boundary";
 import { FullPageErrorFallback, FullPageLoading } from "components/lib";
-import { useQuery } from "react-query";
-import * as auth from "utils/auth-provider";
-import { http } from "utils/http";
+import { useAuth } from "hooks/useAuth";
 
 const AuthenticatedApp = React.lazy(
   () => import("./screens/authenticated-app")
@@ -13,17 +11,7 @@ const UnauthenticatedApp = React.lazy(
 );
 
 function App() {
-  const bootstrapUser = async () => {
-    let data = null;
-    const token = auth.getToken();
-    if (token) {
-      data = await http("me", { token });
-    }
-    return data;
-  };
-  const result = useQuery("auth", bootstrapUser, {
-    retry: 0,
-  });
+  const result = useAuth();
 
   return (
     <div className="App">
