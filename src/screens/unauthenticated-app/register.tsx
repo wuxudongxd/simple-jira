@@ -10,6 +10,7 @@ export const RegisterScreen = ({
   onError: (error: Error) => void;
 }) => {
   const mutation = useMutation((form: AuthForm) => auth.register(form));
+  const queryClient = useQueryClient();
 
   const handleSubmit = async ({
     password2,
@@ -31,8 +32,7 @@ export const RegisterScreen = ({
   };
 
   if (mutation.isSuccess) {
-    useQueryClient().setQueryData("auth", mutation.data);
-    console.log("register success");
+    queryClient.invalidateQueries("auth");
   }
 
   return (

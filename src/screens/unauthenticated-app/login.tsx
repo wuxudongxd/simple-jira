@@ -10,7 +10,7 @@ export const LoginScreen = ({
   onError: (error: Error) => void;
 }) => {
   const mutation = useMutation((form: AuthForm) => auth.login(form));
-
+  const queryClient = useQueryClient();
   const handleSubmit = async (values: {
     username: string;
     password: string;
@@ -23,8 +23,7 @@ export const LoginScreen = ({
   };
 
   if (mutation.isSuccess) {
-    useQueryClient().setQueryData("auth", mutation.data);
-    console.log("login success");
+    queryClient.invalidateQueries("auth");
   }
 
   return (
