@@ -35,7 +35,7 @@ export const userHandlers = [
   rest.get(`${apiUrl}/me`, async (req, res, ctx) => {
     const user = await getUser(req);
     if (user) {
-      return res(ctx.json(user.username));
+      return res(ctx.json({ name: user.username }));
     } else {
       return res(
         ctx.status(400),

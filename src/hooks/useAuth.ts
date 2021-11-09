@@ -56,5 +56,8 @@ export const useLogin = () => {
  * 注销
  */
 export const useLogout = () => {
-  auth.logout().then(useQueryClient().clear);
+  const queryClient = useQueryClient();
+  return () => {
+    auth.logout().then(queryClient.clear);
+  };
 };
