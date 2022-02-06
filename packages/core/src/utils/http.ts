@@ -1,7 +1,7 @@
 import qs from "qs";
 import * as auth from "utils/auth-provider";
 
-const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
+const apiUrl = "http://localhost:3001";
 
 interface Config extends RequestInit {
   token?: string;

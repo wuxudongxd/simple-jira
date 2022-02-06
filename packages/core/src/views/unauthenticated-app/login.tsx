@@ -3,11 +3,11 @@ import { LongButton } from "./index";
 import { AuthForm } from "types/index";
 import { useLogin } from "src/hooks/useAuth";
 
-export const LoginScreen = ({
-  onError,
-}: {
+interface setError {
   onError: (error: Error) => void;
-}) => {
+}
+
+export const LoginScreen = ({ onError }: setError) => {
   const mutation = useLogin();
   const handleSubmit = async (values: AuthForm) => {
     try {

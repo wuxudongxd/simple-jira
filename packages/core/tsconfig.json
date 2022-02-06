@@ -23,7 +23,7 @@
       "components/*": ["src/components/*"],
       "context/*": ["src/context/*"],
       "hooks/*": ["src/hooks/*"],
-      "screens/*": ["src/screens/*"],
+      "screens/*": ["src/views/*"],
       "types/*": ["src/types/*"],
       "utils/*": ["src/utils/*"],
     }

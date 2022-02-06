@@ -2,8 +2,8 @@ import { worker } from "./mocks/browser";
 import { getItem, setItem, clear } from "localforage";
 import db from "./initial.json";
 
-function DevTool(foo: () => void) {
-  if (import.meta.env.DEV) {
+function DevTool(foo: () => void, url: string) {
+  if (url) {
     worker.start({
       onUnhandledRequest: "bypass",
     });

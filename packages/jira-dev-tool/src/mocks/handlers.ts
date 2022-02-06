@@ -4,7 +4,7 @@ import { getItem, setItem } from "localforage";
 import { md5 } from "pure-md5";
 // import { SignJWT, jwtVerify } from "jose";
 
-const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
+const apiUrl = "http://localhost:3001";
 const secret = "FWB4*FcK*D^DGYm&kz%8T*Q";
 
 interface IAdmin {
