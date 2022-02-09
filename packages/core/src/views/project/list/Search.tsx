@@ -2,12 +2,11 @@ import { Form, Input } from "antd";
 import { UserSelect } from "~/components/business/user-select";
 
 interface SearchPanelProps {
-  users: User[];
   param: Partial<Pick<Project, "name" | "personId">>;
   setParam: (param: SearchPanelProps["param"]) => void;
 }
 
-export const SearchPanel = ({ users, param, setParam }: SearchPanelProps) => {
+export const SearchPanel = ({ param, setParam }: SearchPanelProps) => {
   return (
     <Form className="mb-8" layout="inline">
       <Form.Item>

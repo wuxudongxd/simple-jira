@@ -18,7 +18,6 @@ const getToken = (req: any): string => {
 
 export async function getUser(req: any) {
   const token = getToken(req);
-  console.log("token", token);
 
   if (!token) {
     throw new Error("A token must be provided");
@@ -155,7 +154,7 @@ export const ProjectHandlers = [
       if (project) {
         await setItem(
           "projects",
-          projects.filter((p: any) => p.id !== id)
+          projects.filter((p: any) => p.id !== Number(id))
         );
       }
       return res(ctx.json(project));

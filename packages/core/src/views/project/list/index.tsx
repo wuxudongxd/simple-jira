@@ -11,7 +11,8 @@ import { useProjectModal, useProjectsSearchParams } from "./util";
 export const ProjectListScreen = () => {
   useDocumentTitle("项目列表", false);
 
-  const { open } = useProjectModal();
+  const { open } = useProjectModal();  
+
   const [param, setParam] = useProjectsSearchParams();
   const {
     isLoading,
@@ -28,7 +29,7 @@ export const ProjectListScreen = () => {
           创建项目
         </Button>
       </div>
-      <SearchPanel users={users || []} param={param} setParam={setParam} />
+      <SearchPanel param={param} setParam={setParam} />
       <ErrorBox error={error} />
       <List loading={isLoading} users={users || []} dataSource={list || []} />
     </div>

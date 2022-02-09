@@ -1,16 +1,16 @@
-import { Button, Drawer, Form, Input, Spin } from 'antd';
-import { ErrorBox } from 'components/lib';
-import { UserSelect } from '~/components/business/user-select';
-import { useEffect } from 'react';
-import { useAddProject, useEditProject } from '~/hooks/http';
+import { Button, Drawer, Form, Input, Spin } from "antd";
+import { ErrorBox } from "components/lib";
+import { UserSelect } from "~/components/business/user-select";
+import { useEffect } from "react";
+import { useAddProject, useEditProject } from "~/hooks/http";
 
-import { useProjectModal, useProjectsQueryKey } from './util';
+import { useProjectModal, useProjectsQueryKey } from "./util";
 
 export const ProjectModal = () => {
   const { projectModalOpen, close, editingProject, isLoading } =
     useProjectModal();
   const useMutateProject = editingProject ? useEditProject : useAddProject;
-  
+
   const {
     mutateAsync,
     error,
@@ -85,5 +85,3 @@ export const ProjectModal = () => {
     </Drawer>
   );
 };
-
-

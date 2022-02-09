@@ -8,7 +8,7 @@ import { ProjectModal } from "~/views/project/list/Modal";
 // import { ProjectPopover } from "components/project-popover";
 // import { UserPopover } from "components/user-popover";
 
-export default function AuthenticatedApp() {
+export default function AuthenticatedApp() {  
   return (
     <div className="gird grid-rows-[6rem_1fr]">
       <PageHeader />
