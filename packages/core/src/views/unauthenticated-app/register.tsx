@@ -1,6 +1,5 @@
-import { Form, Input } from "antd";
-import { LongButton } from "./index";
-import { useRegister } from "~/hooks/http/useAuth";
+import { Button, Form, Input } from 'antd';
+import { useRegister } from '~/hooks/http/useAuth';
 
 export const RegisterScreen = ({
   onError,
@@ -41,9 +40,9 @@ export const RegisterScreen = ({
         <Input placeholder="确认密码" type="password" id="password2" />
       </Form.Item>
       <Form.Item>
-        <LongButton htmlType="submit" type="primary">
+        <Button className='w-full' htmlType="submit" type="primary">
           注册
-        </LongButton>
+        </Button>
       </Form.Item>
     </Form>
   );
