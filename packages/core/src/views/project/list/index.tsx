@@ -1,19 +1,23 @@
-import { Button } from 'antd';
-import { ErrorBox } from 'components/lib';
-import { useProjects, useUsers } from '~/hooks/http';
-import { useDebounce } from '~/hooks/useDebounce';
-import { useDocumentTitle } from '~/hooks/useDocumentTitle';
+import { Button } from "antd";
+import { ErrorBox } from "components/lib";
+import { useProjects, useUsers } from "~/hooks/http";
+import { useDebounce } from "~/hooks/useDebounce";
+import { useDocumentTitle } from "~/hooks/useDocumentTitle";
 
-import { List } from './list';
-import { SearchPanel } from './Search';
-import { useProjectModal, useProjectsSearchParams } from './util';
+import { List } from "./list";
+import { SearchPanel } from "./Search";
+import { useProjectModal, useProjectsSearchParams } from "./util";
 
 export const ProjectListScreen = () => {
   useDocumentTitle("项目列表", false);
 
   const { open } = useProjectModal();
   const [param, setParam] = useProjectsSearchParams();
-  const { isLoading, error, data: list } = useProjects(useDebounce(param, 200));
+  const {
+    isLoading,
+    error,
+    data: list,
+  } = useProjects(useDebounce(param, 2000));
   const { data: users } = useUsers();
 
   return (

@@ -1,11 +1,11 @@
-import React from "react";
-import { ErrorBoundary } from "~/components/common/error-boundary";
-import { FullPageErrorFallback, FullPageLoading } from "components/lib";
-import { useAuth } from "~/hooks/http/useAuth";
+import { FullPageErrorFallback, FullPageLoading } from 'components/lib';
+import React from 'react';
+import { ErrorBoundary } from '~/components/common/error-boundary';
+import { useAuth } from '~/hooks/http/useAuth';
 
-const AuthenticatedApp = React.lazy(() => import("./views/authenticated-app"));
+const AuthenticatedApp = React.lazy(() => import("./views/project"));
 const UnauthenticatedApp = React.lazy(
-  () => import("./views/unauthenticated-app")
+  () => import("./views/unAuth")
 );
 
 function App() {

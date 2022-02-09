@@ -1,13 +1,14 @@
-import { useState } from "react";
-import { RegisterScreen } from "./register";
-import { LoginScreen } from "./login";
-import { Button, Card, Divider } from "antd";
-import styled from "@emotion/styled";
-import logo from "assets/logo.svg";
-import left from "assets/left.svg";
-import right from "assets/right.svg";
-import { useDocumentTitle } from "hooks/useDocumentTitle";
-import { ErrorBox } from "components/lib";
+import styled from '@emotion/styled';
+import { Button, Card, Divider } from 'antd';
+import left from 'assets/left.svg';
+import logo from 'assets/logo.svg';
+import right from 'assets/right.svg';
+import { ErrorBox } from 'components/lib';
+import { useDocumentTitle } from 'hooks/useDocumentTitle';
+import { useState } from 'react';
+
+import { LoginScreen } from './login';
+import { RegisterScreen } from './register';
 
 export default function UnauthenticatedApp() {
   const [isRegister, setIsRegister] = useState(false);
@@ -36,9 +37,6 @@ export default function UnauthenticatedApp() {
   );
 }
 
-export const LongButton = styled(Button)`
-  width: 100%;
-`;
 
 const Title = styled.h2`
   margin-bottom: 2.4rem;

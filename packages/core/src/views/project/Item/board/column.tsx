@@ -9,7 +9,7 @@ import {
   useBoardsQueryKey,
   useTasksModal,
   useTasksSearchParams,
-} from "~/views/board/util";
+} from "~/views/project/Item/board/util";
 import { CreateTask } from "~/views/board/create-task";
 import { Mark } from "components/mark";
 import { useDeleteBoard } from "utils/Board";

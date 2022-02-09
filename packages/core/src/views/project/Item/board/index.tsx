@@ -6,8 +6,8 @@ import {
   useProjectInUrl,
   useTasksQueryKey,
   useTasksSearchParams,
-} from "~/views/board/util";
-import { BoardColumn } from "~/views/board/column";
+} from "~/views/project/Item/board/util";
+import { BoardColumn } from "~/views/project/Item/board/column";
 import styled from "@emotion/styled";
 import { useboards, useReorderboard } from "utils/board";
 import { SearchPanel } from "views/board/search-panel";
