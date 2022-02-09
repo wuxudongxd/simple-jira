@@ -1,26 +1,21 @@
 import React, { useEffect } from "react";
 import { Button, Drawer, Form, Input, Spin } from "antd";
-import {
-  useProjectModal,
-  useProjectsQueryKey,
-} from "screens/project-list/util";
+import { useProjectModal, useProjectsQueryKey } from "./util";
 import { UserSelect } from "components/user-select";
-import { useAddProject, useEditProject } from "utils/project";
+import { useAddProject, useEditProject } from "~/hooks/http";
 import { ErrorBox } from "components/lib";
 import styled from "@emotion/styled";
 
 export const ProjectModal = () => {
-  const {
-    projectModalOpen,
-    close,
-    editingProject,
-    isLoading,
-  } = useProjectModal();
+  const { projectModalOpen, close, editingProject, isLoading } =
+    useProjectModal();
   const useMutateProject = editingProject ? useEditProject : useAddProject;
 
-  const { mutateAsync, error, isLoading: mutateLoading } = useMutateProject(
-    useProjectsQueryKey()
-  );
+  const {
+    mutateAsync,
+    error,
+    isLoading: mutateLoading,
+  } = useMutateProject(useProjectsQueryKey());
   const [form] = Form.useForm();
   const onFinish = (values: any) => {
     mutateAsync({ ...editingProject, ...values }).then(() => {
@@ -44,8 +39,7 @@ export const ProjectModal = () => {
       forceRender={true}
       onClose={closeModal}
       visible={projectModalOpen}
-      width={"100%"}
-    >
+      width={"100%"}>
       <Container>
         {isLoading ? (
           <Spin size={"large"} />
@@ -57,21 +51,18 @@ export const ProjectModal = () => {
               form={form}
               layout={"vertical"}
               style={{ width: "40rem" }}
-              onFinish={onFinish}
-            >
+              onFinish={onFinish}>
               <Form.Item
                 label={"名称"}
                 name={"name"}
-                rules={[{ required: true, message: "请输入项目名" }]}
-              >
+                rules={[{ required: true, message: "请输入项目名" }]}>
                 <Input placeholder={"请输入项目名称"} />
               </Form.Item>
 
               <Form.Item
                 label={"部门"}
                 name={"organization"}
-                rules={[{ required: true, message: "请输入部门名" }]}
-              >
+                rules={[{ required: true, message: "请输入部门名" }]}>
                 <Input placeholder={"请输入部门名"} />
               </Form.Item>
 
@@ -83,8 +74,7 @@ export const ProjectModal = () => {
                 <Button
                   loading={mutateLoading}
                   type={"primary"}
-                  htmlType={"submit"}
-                >
+                  htmlType={"submit"}>
                   提交
                 </Button>
               </Form.Item>

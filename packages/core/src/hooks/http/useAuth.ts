@@ -1,8 +1,7 @@
 import { useQueryClient, useMutation } from "react-query";
 import * as auth from "utils/auth-provider";
-import { AuthForm, User } from "src/types";
 import { useQuery } from "react-query";
-import { http } from "utils/http";
+import { http } from "~/hooks/http/http";
 
 /**
  * 通过本地存储的token进行认证

@@ -1,6 +1,6 @@
 {
   "name": "@wuxudongxd/jira-dev-tool",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "license": "MIT",
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",

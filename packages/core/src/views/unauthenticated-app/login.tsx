@@ -1,7 +1,6 @@
 import { Form, Input } from "antd";
 import { LongButton } from "./index";
-import { AuthForm } from "types/index";
-import { useLogin } from "src/hooks/useAuth";
+import { useLogin } from "~/hooks/http/useAuth";
 
 interface setError {
   onError: (error: Error) => void;

@@ -1,7 +1,6 @@
 import { Form, Input } from "antd";
 import { LongButton } from "./index";
-import { AuthForm } from "src/types";
-import { useRegister } from "hooks/useAuth";
+import { useRegister } from "~/hooks/http/useAuth";
 
 export const RegisterScreen = ({
   onError,

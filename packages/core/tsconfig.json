@@ -18,15 +18,16 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
+      "~/*": ["src/*"],
       "src/*": ["src/*"],
       "assets/*": ["src/assets/*"],
       "components/*": ["src/components/*"],
       "context/*": ["src/context/*"],
       "hooks/*": ["src/hooks/*"],
       "screens/*": ["src/views/*"],
-      "types/*": ["src/types/*"],
+      "types/*": ["../../types/*"],
       "utils/*": ["src/utils/*"],
     }
   },
-  "include": ["./src"]
+  "include": ["./src", "../../types"]
 }

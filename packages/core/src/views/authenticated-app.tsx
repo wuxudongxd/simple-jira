@@ -1,47 +1,41 @@
-import styled from "@emotion/styled";
 import { Button, Dropdown, Menu } from "antd";
 import { Navigate, Route, Routes } from "react-router";
-import { useAdminInfo, useLogout } from "hooks/useAuth";
-import SoftwareLogo from "assets/software-logo.svg";
+import { useAdminInfo, useLogout } from "~/hooks/http/useAuth";
 import { resetRoute } from "src/utils";
-import { ProjectScreen } from "src/views/project";
+// import { ProjectScreen } from "src/views/project";
 import { ProjectListScreen } from "src/views/project/list";
-import { ProjectModal } from "src/views/project/list/project-modal";
-import { ButtonNoPadding, Row } from "components/lib";
-import { ProjectPopover } from "components/project-popover";
-import { UserPopover } from "components/user-popover";
+// import { ProjectModal } from "src/views/project/list/project-modal";
+// import { ProjectPopover } from "components/project-popover";
+// import { UserPopover } from "components/user-popover";
 
 export default function AuthenticatedApp() {
   return (
-    <Container>
+    <div className="gird grid-rows-[6rem_1fr]">
       <PageHeader />
-      <Main>
+      <div className="flex overflow-hidden">
         <Routes>
-          <Route path={"/projects"} element={<ProjectListScreen />} />
-          <Route path={"/projects/:projectId/*"} element={<ProjectScreen />} />
-          <Navigate to={"/projects"} />
+          <Route path="/" element={<ProjectListScreen />} />
         </Routes>
-      </Main>
-      <ProjectModal />
-    </Container>
+      </div>
+      {/* <ProjectModal /> */}
+    </div>
   );
 }
 
 const PageHeader = () => {
   return (
-    <Header between={true}>
-      <HeaderLeft gap={true}>
-        <ButtonNoPadding type={"link"} onClick={resetRoute}>
-          {/* <SoftwareLogo width={"18rem"} color={"rgb(38, 132, 255)"} /> */}
-          <SoftwareLogo />
-        </ButtonNoPadding>
-        <ProjectPopover />
-        <UserPopover />
-      </HeaderLeft>
-      <HeaderRight>
+    <div className="flex items-center justify-center p-14 shadow-md">
+      <div className="flex justify-center items-center">
+        <Button className="p-0" onClick={resetRoute}>
+          <div className="bg-[url('assets/software-logo.svg')] w-72 h-8 bg-no-repeat bg-contain"></div>
+        </Button>
+        {/* <ProjectPopover />
+        <UserPopover /> */}
+      </div>
+      <div className="flex justify-center items-center">
         <User />
-      </HeaderRight>
-    </Header>
+      </div>
+    </div>
   );
 };
 
@@ -52,34 +46,16 @@ const User = () => {
     <Dropdown
       overlay={
         <Menu>
-          <Menu.Item key={"logout"}>
-            <Button onClick={logout} type={"link"}>
+          <Menu.Item key="logout">
+            <Button onClick={logout} type="link">
               登出
             </Button>
           </Menu.Item>
         </Menu>
       }>
-      <Button type={"link"} onClick={(e) => e.preventDefault()}>
+      <Button type="link" onClick={(e) => e.preventDefault()}>
         Hi, {user?.name}
       </Button>
     </Dropdown>
   );
 };
-
-const Container = styled.div`
-  display: grid;
-  grid-template-rows: 6rem 1fr;
-  height: 100vh;
-`;
-
-const Header = styled(Row)`
-  padding: 3.2rem;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
-  z-index: 1;
-`;
-const HeaderLeft = styled(Row)``;
-const HeaderRight = styled.div``;
-const Main = styled.main`
-  display: flex;
-  overflow: hidden;
-`;

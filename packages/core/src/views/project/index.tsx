@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Navigate, Route, Routes, useLocation } from "react-router";
-import { KanbanScreen } from "./board";
-import { EpicScreen } from "./task";
+// import { Board } from "./board";
+// import { Task } from "./task";
 import styled from "@emotion/styled";
 import { Menu } from "antd";
 
@@ -15,22 +15,22 @@ export const ProjectScreen = () => {
   return (
     <Container>
       <Aside>
-        <Menu mode={"inline"} selectedKeys={[routeType]}>
-          <Menu.Item key={"kanban"}>
-            <Link to={"kanban"}>看板</Link>
+        {/* <Menu mode={"inline"} selectedKeys={[routeType]}>
+          <Menu.Item key={"board"}>
+            <Link to={"board"}>看板</Link>
           </Menu.Item>
-          <Menu.Item key={"epic"}>
-            <Link to={"epic"}>任务组</Link>
+          <Menu.Item key={"task"}>
+            <Link to={"task"}>任务组</Link>
           </Menu.Item>
-        </Menu>
+        </Menu> */}
       </Aside>
       <Main>
         <Routes>
-          {/*projects/:projectId/kanban*/}
-          <Route path={"/kanban"} element={<KanbanScreen />} />
-          {/*projects/:projectId/epic*/}
-          <Route path={"/epic"} element={<EpicScreen />} />
-          <Navigate to={window.location.pathname + "/kanban"} replace={true} />
+          {/*projects/:projectId/board*/}
+          {/* <Route path={"/board"} element={<Board />} /> */}
+          {/*projects/:projectId/task*/}
+          {/* <Route path={"/task"} element={<Task />} /> */}
+          {/* <Navigate to={window.location.pathname + "/board"} replace={true} /> */}
         </Routes>
       </Main>
     </Container>

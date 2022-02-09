@@ -1,7 +1,7 @@
 import React from "react";
 import { ErrorBoundary } from "src/components/error-boundary";
 import { FullPageErrorFallback, FullPageLoading } from "components/lib";
-import { useAuth } from "hooks/useAuth";
+import { useAuth } from "~/hooks/http/useAuth";
 
 const AuthenticatedApp = React.lazy(() => import("./views/authenticated-app"));
 const UnauthenticatedApp = React.lazy(
@@ -10,7 +10,6 @@ const UnauthenticatedApp = React.lazy(
 
 function App() {
   const result = useAuth();
-  console.log(result);
 
   return (
     <div className="App">
