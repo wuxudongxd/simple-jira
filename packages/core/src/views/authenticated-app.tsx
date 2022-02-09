@@ -1,10 +1,10 @@
 import { Button, Dropdown, Menu } from "antd";
-import { Navigate, Route, Routes } from "react-router";
+import {  Route, Routes } from "react-router";
 import { useAdminInfo, useLogout } from "~/hooks/http/useAuth";
 import { resetRoute } from "src/utils";
 // import { ProjectScreen } from "src/views/project";
 import { ProjectListScreen } from "src/views/project/list";
-// import { ProjectModal } from "src/views/project/list/project-modal";
+import { ProjectModal } from "~/views/project/list/Modal";
 // import { ProjectPopover } from "components/project-popover";
 // import { UserPopover } from "components/user-popover";
 
@@ -17,7 +17,7 @@ export default function AuthenticatedApp() {
           <Route path="/" element={<ProjectListScreen />} />
         </Routes>
       </div>
-      {/* <ProjectModal /> */}
+      <ProjectModal />
     </div>
   );
 }

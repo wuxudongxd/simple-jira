@@ -1,5 +1,5 @@
 import React from "react";
-import { ErrorBoundary } from "src/components/error-boundary";
+import { ErrorBoundary } from "~/components/common/error-boundary";
 import { FullPageErrorFallback, FullPageLoading } from "components/lib";
 import { useAuth } from "~/hooks/http/useAuth";
 

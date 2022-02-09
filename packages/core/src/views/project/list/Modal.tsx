@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
-import { Button, Drawer, Form, Input, Spin } from "antd";
-import { useProjectModal, useProjectsQueryKey } from "./util";
-import { UserSelect } from "components/user-select";
-import { useAddProject, useEditProject } from "~/hooks/http";
-import { ErrorBox } from "components/lib";
-import styled from "@emotion/styled";
+import { Button, Drawer, Form, Input, Spin } from 'antd';
+import { ErrorBox } from 'components/lib';
+import { UserSelect } from '~/components/business/user-select';
+import { useEffect } from 'react';
+import { useAddProject, useEditProject } from '~/hooks/http';
+
+import { useProjectModal, useProjectsQueryKey } from './util';
 
 export const ProjectModal = () => {
   const { projectModalOpen, close, editingProject, isLoading } =
     useProjectModal();
   const useMutateProject = editingProject ? useEditProject : useAddProject;
-
+  
   const {
     mutateAsync,
     error,
@@ -39,57 +39,51 @@ export const ProjectModal = () => {
       forceRender={true}
       onClose={closeModal}
       visible={projectModalOpen}
-      width={"100%"}>
-      <Container>
+      width="100%">
+      <div className="flex flex-col justify-center items-center h-[80vh]">
         {isLoading ? (
-          <Spin size={"large"} />
+          <Spin size="large" />
         ) : (
           <>
             <h1>{title}</h1>
             <ErrorBox error={error} />
             <Form
               form={form}
-              layout={"vertical"}
-              style={{ width: "40rem" }}
+              layout="vertical"
+              className="w-[40rem]"
               onFinish={onFinish}>
               <Form.Item
-                label={"名称"}
-                name={"name"}
+                label="名称"
+                name="name"
                 rules={[{ required: true, message: "请输入项目名" }]}>
-                <Input placeholder={"请输入项目名称"} />
+                <Input placeholder="请输入项目名称" />
               </Form.Item>
 
               <Form.Item
-                label={"部门"}
-                name={"organization"}
+                label="部门"
+                name="organization"
                 rules={[{ required: true, message: "请输入部门名" }]}>
-                <Input placeholder={"请输入部门名"} />
+                <Input placeholder="请输入部门名" />
               </Form.Item>
 
-              <Form.Item label={"负责人"} name={"personId"}>
-                <UserSelect defaultOptionName={"负责人"} />
+              <Form.Item label="负责人" name="personId">
+                <UserSelect defaultOptionName="负责人" />
               </Form.Item>
 
-              <Form.Item style={{ textAlign: "right" }}>
+              <Form.Item className="text-right">
                 <Button
                   loading={mutateLoading}
-                  type={"primary"}
-                  htmlType={"submit"}>
+                  type="primary"
+                  htmlType="submit">
                   提交
                 </Button>
               </Form.Item>
             </Form>
           </>
         )}
-      </Container>
+      </div>
     </Drawer>
   );
 };
 
-const Container = styled.div`
-  height: 80vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
+

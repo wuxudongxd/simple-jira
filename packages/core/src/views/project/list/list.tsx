@@ -1,13 +1,12 @@
-import { Dropdown, Menu, Modal, Table } from "antd";
-import { TableProps } from "antd/es/table";
-import { ButtonNoPadding } from "components/lib";
-import dayjs from "dayjs";
-import { Link } from "react-router-dom";
-import { Pin } from "~/components/pin";
-import { useDeleteProject, useEditProject } from "~/hooks/http";
+import { Button, Dropdown, Menu, Modal, Table } from 'antd';
+import dayjs from 'dayjs';
+import { Link } from 'react-router-dom';
+import { Pin } from '~/components/business/pin';
+import { useDeleteProject, useEditProject } from '~/hooks/http';
 
-import { useProjectModal, useProjectsQueryKey } from "./util";
+import { useProjectModal, useProjectsQueryKey } from './util';
 
+import type {TableProps} from "antd"
 interface ListProps extends TableProps<Project> {
   users: User[];
 }
@@ -15,7 +14,6 @@ interface ListProps extends TableProps<Project> {
 export const List = ({ users, ...props }: ListProps) => {
   const { mutate } = useEditProject(useProjectsQueryKey());
   const pinProject = (id: number) => (pin: boolean) => {
-    console.log(pin);
     mutate({ id, pin });
   };
   return (
@@ -96,7 +94,7 @@ const More = ({ project }: { project: Project }) => {
     <Dropdown
       overlay={
         <Menu>
-          <Menu.Item onClick={() => startEdit(project.id)} key={"edit"}>
+          <Menu.Item onClick={() => startEdit(project.id)} key="edit">
             编辑
           </Menu.Item>
           <Menu.Item
@@ -106,7 +104,7 @@ const More = ({ project }: { project: Project }) => {
           </Menu.Item>
         </Menu>
       }>
-      <ButtonNoPadding type="link">...</ButtonNoPadding>
+      <Button className='p-0' type="link">...</Button>
     </Dropdown>
   );
 };

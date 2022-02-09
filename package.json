@@ -6,7 +6,10 @@
   "author": "wuxudongxd <wuxudongxd@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "client":"pnpm -C ./packages/core dev",
-    "dev:build":"pnpm -C ./packages/jira-dev-tool build"
+    "client": "pnpm -C ./packages/core dev",
+    "dev:build": "pnpm -C ./packages/jira-dev-tool build"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.5"
   }
 }

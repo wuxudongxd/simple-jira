@@ -5,17 +5,15 @@ import { useDebounce } from '~/hooks/useDebounce';
 import { useDocumentTitle } from '~/hooks/useDocumentTitle';
 
 import { List } from './list';
-import { SearchPanel } from './search-panel';
+import { SearchPanel } from './Search';
 import { useProjectModal, useProjectsSearchParams } from './util';
 
 export const ProjectListScreen = () => {
   useDocumentTitle("项目列表", false);
 
   const { open } = useProjectModal();
-
   const [param, setParam] = useProjectsSearchParams();
   const { isLoading, error, data: list } = useProjects(useDebounce(param, 200));
-
   const { data: users } = useUsers();
 
   return (

@@ -32,10 +32,13 @@ export const useAddProject = (queryKey: QueryKey) => {
 
   return useMutation(
     (params: Partial<Project>) =>
-      client(`projects`, {
+      {
+        console.log("addProject", params);
+        
+        return  client(`projects`, {
         data: params,
         method: "POST",
-      }),
+      })},
     useAddConfig(queryKey)
   );
 };

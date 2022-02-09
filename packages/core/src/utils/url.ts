@@ -11,10 +11,7 @@ export const useUrlQueryParam = <K extends string>(keys: K[]) => {
   const [stateKeys] = useState(keys);
   return [
     useMemo(
-      () =>
-        subset(Object.fromEntries(searchParams), stateKeys) as {
-          [key in K]: string;
-        },
+      () => subset(Object.fromEntries(searchParams), stateKeys),
       [searchParams, stateKeys]
     ),
     (params: Partial<{ [key in K]: unknown }>) => {

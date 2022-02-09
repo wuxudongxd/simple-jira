@@ -1,6 +1,5 @@
-import React from "react";
 import { Form, Input } from "antd";
-import { UserSelect } from "components/user-select";
+import { UserSelect } from "~/components/business/user-select";
 
 interface SearchPanelProps {
   users: User[];
