@@ -1,20 +1,13 @@
-import React from "react";
-import { useTaskTypes } from "utils/task-type";
-import taskIcon from "assets/task.svg";
-import bugIcon from "assets/bug.svg";
-import styled from "@emotion/styled";
 import { Button, Card, Dropdown, Menu, Modal } from "antd";
-import { useTasks } from "utils/task";
-import {
-  useBoardsQueryKey,
-  useTasksModal,
-  useTasksSearchParams,
-} from "~/views/project/Item/board/util";
-import { CreateTask } from "~/views/board/create-task";
-import { Mark } from "components/mark";
-import { useDeleteBoard } from "utils/Board";
-import { Row } from "components/lib";
-import { Drag, Drop, DropChild } from "components/drag-and-drop";
+import bugIcon from "assets/bug.svg";
+import taskIcon from "assets/task.svg";
+import React from "react";
+import { Drag, Drop, DropChild } from "~/components/common/drag-and-drop";
+import { Mark } from "~/components/common/mark";
+import { useDeleteBoard, useTasks, useTaskTypes } from "~/hooks/http";
+
+import { CreateTask } from "./CreateTask";
+import { useBoardsQueryKey, useTasksModal, useTasksSearchParams } from "./util";
 
 const TaskTypeIcon = ({ id }: { id: number }) => {
   const { data: taskTypes } = useTaskTypes();
@@ -46,12 +39,15 @@ export const BoardColumn = React.forwardRef<HTMLDivElement, { Board: Board }>(
     const { data: allTasks } = useTasks(useTasksSearchParams());
     const tasks = allTasks?.filter((task: any) => task.BoardId === Board.id);
     return (
-      <Container {...props} ref={ref}>
-        <Row between={true}>
+      <div
+        className="min-w-[27rem] border-8 bg-slate-200 flex flex-col p-3 mr-6"
+        {...props}
+        ref={ref}>
+        <div className="flex items-center justify-between">
           <h3>{Board.name}</h3>
           <More Board={Board} key={Board.id} />
-        </Row>
-        <TasksContainer>
+        </div>
+        <div className="flex-1 overflow-scroll">
           <Drop
             type={"ROW"}
             direction={"vertical"}
@@ -70,8 +66,8 @@ export const BoardColumn = React.forwardRef<HTMLDivElement, { Board: Board }>(
             </DropChild>
           </Drop>
           <CreateTask BoardId={Board.id} />
-        </TasksContainer>
-      </Container>
+        </div>
+      </div>
     );
   }
 );
@@ -103,22 +99,3 @@ const More = ({ Board }: { Board: Board }) => {
     </Dropdown>
   );
 };
-
-export const Container = styled.div`
-  min-width: 27rem;
-  border-radius: 6px;
-  background-color: rgb(244, 245, 247);
-  display: flex;
-  flex-direction: column;
-  padding: 0.7rem 0.7rem 1rem;
-  margin-right: 1.5rem;
-`;
-
-const TasksContainer = styled.div`
-  overflow: scroll;
-  flex: 1;
-
-  ::-webkit-scrollbar {
-    display: none;
-  }
-`;

@@ -1,13 +1,11 @@
-import React from "react";
 import { Divider, List, Popover, Typography } from "antd";
-import styled from "@emotion/styled";
-import { useUsers } from "utils/user";
+import { useUsers } from "~/hooks/http";
 
 export const UserPopover = () => {
   const { data: users, refetch } = useUsers();
 
   const content = (
-    <ContentContainer>
+    <div className="min-w-[30rem]">
       <Typography.Text type={"secondary"}>组员列表</Typography.Text>
       <List>
         {users?.map((user) => (
@@ -17,20 +15,15 @@ export const UserPopover = () => {
         ))}
       </List>
       <Divider />
-    </ContentContainer>
+    </div>
   );
 
   return (
     <Popover
       onVisibleChange={() => refetch()}
       placement={"bottom"}
-      content={content}
-    >
+      content={content}>
       <span>组员</span>
     </Popover>
   );
 };
-
-const ContentContainer = styled.div`
-  min-width: 30rem;
-`;

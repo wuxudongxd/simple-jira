@@ -1,8 +1,7 @@
 import { useLocation } from "react-router";
-import { useProject } from "utils/project";
+import { useProject, useTask } from "~/hooks/http";
 import { useUrlQueryParam } from "utils/url";
 import { useCallback, useMemo } from "react";
-import { useTask } from "utils/task";
 
 export const useProjectIdInUrl = () => {
   const { pathname } = useLocation();

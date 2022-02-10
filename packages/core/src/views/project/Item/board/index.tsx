@@ -1,30 +1,21 @@
-import React, { useCallback } from "react";
-import { useDocumentTitle } from "hooks/useDocumentTitle";
-import {
-  useBoardSearchParams,
-  useBoardsQueryKey,
-  useProjectInUrl,
-  useTasksQueryKey,
-  useTasksSearchParams,
-} from "~/views/project/Item/board/util";
-import { BoardColumn } from "~/views/project/Item/board/column";
-import styled from "@emotion/styled";
-import { useboards, useReorderboard } from "utils/board";
-import { SearchPanel } from "views/board/search-panel";
-import { ScreenContainer } from "components/lib";
-import { useReorderTask, useTasks } from "utils/task";
 import { Spin } from "antd";
-import { Createboard } from "views/board/create-board";
-import { TaskModal } from "views/board/task-modal";
+import { useCallback } from "react";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import { Drag, Drop, DropChild } from "components/drag-and-drop";
-import { Profiler } from "components/profiler";
+import { Drag, Drop, DropChild } from "~/components/common/drag-and-drop";
+import { useBoards, useReorderBoard, useReorderTask, useTasks } from "~/hooks/http";
+import { useDocumentTitle } from "~/hooks/useDocumentTitle";
+
+import { BoardColumn } from "./column";
+import { CreateBoard } from "./CreateBoard";
+import { TaskModal } from "./Modal";
+import { SearchPanel } from "./Search";
+import { useBoardSearchParams, useBoardsQueryKey, useProjectInUrl, useTasksQueryKey, useTasksSearchParams } from "./util";
 
 export const boardScreen = () => {
   useDocumentTitle("看板列表");
 
   const { data: currentProject } = useProjectInUrl();
-  const { data: boards, isLoading: boardIsLoading } = useboards(
+  const { data: boards, isLoading: boardIsLoading } = useBoards(
     useBoardSearchParams()
   );
   const { isLoading: taskIsLoading } = useTasks(useTasksSearchParams());
@@ -32,15 +23,15 @@ export const boardScreen = () => {
 
   const onDragEnd = useDragEnd();
   return (
-    <Profiler id={"看板页面"}>
+
       <DragDropContext onDragEnd={onDragEnd}>
-        <ScreenContainer>
+        <div className="flex flex-col w-full p-12">
           <h1>{currentProject?.name}看板</h1>
           <SearchPanel />
           {isLoading ? (
             <Spin size={"large"} />
           ) : (
-            <ColumnsContainer>
+            <div className="flex flex-1 overflow-x-scroll">
               <Drop
                 type={"COLUMN"}
                 direction={"horizontal"}
@@ -51,24 +42,23 @@ export const boardScreen = () => {
                       key={board.id}
                       draggableId={"board" + board.id}
                       index={index}>
-                      <BoardColumn board={board} key={board.id} />
+                      <BoardColumn Board={board} key={board.id} />
                     </Drag>
                   ))}
                 </DropChild>
               </Drop>
-              <Createboard />
-            </ColumnsContainer>
+              <CreateBoard />
+            </div>
           )}
           <TaskModal />
-        </ScreenContainer>
+        </div>
       </DragDropContext>
-    </Profiler>
   );
 };
 
 export const useDragEnd = () => {
-  const { data: boards } = useboards(useBoardSearchParams());
-  const { mutate: reorderboard } = useReorderboard(useBoardsQueryKey());
+  const { data: boards } = useBoards(useBoardSearchParams());
+  const { mutate: reorderBoard } = useReorderBoard(useBoardsQueryKey());
   const { mutate: reorderTask } = useReorderTask(useTasksQueryKey());
   const { data: allTasks = [] } = useTasks(useTasksSearchParams());
   return useCallback(
@@ -84,15 +74,15 @@ export const useDragEnd = () => {
           return;
         }
         const type = destination.index > source.index ? "after" : "before";
-        reorderboard({ fromId, referenceId: toId, type });
+        reorderBoard({ fromId, referenceId: toId, type });
       }
       if (type === "ROW") {
-        const fromboardId = +source.droppableId;
-        const toboardId = +destination.droppableId;
+        const fromBoardId = +source.droppableId;
+        const toBoardId = +destination.droppableId;
         const fromTask = allTasks.filter(
-          (task) => task.boardId === fromboardId
+          (task) => task.boardId === fromBoardId
         )[source.index];
-        const toTask = allTasks.filter((task) => task.boardId === toboardId)[
+        const toTask = allTasks.filter((task) => task.boardId === toBoardId)[
           destination.index
         ];
         if (fromTask?.id === toTask?.id) {
@@ -101,21 +91,15 @@ export const useDragEnd = () => {
         reorderTask({
           fromId: fromTask?.id,
           referenceId: toTask?.id,
-          fromboardId,
-          toboardId,
+          fromBoardId,
+          toBoardId,
           type:
-            fromboardId === toboardId && destination.index > source.index
+            fromBoardId === toBoardId && destination.index > source.index
               ? "after"
               : "before",
         });
       }
     },
-    [boards, reorderboard, allTasks, reorderTask]
+    [boards, reorderBoard, allTasks, reorderTask]
   );
 };
-
-export const ColumnsContainer = styled("div")`
-  display: flex;
-  overflow-x: scroll;
-  flex: 1;
-`;

@@ -27,10 +27,6 @@ export const ErrorBox = ({ error }: { error: unknown }) => {
   return null;
 };
 
-export const ButtonNoPadding = styled(Button)`
-  padding: 0;
-`;
-
 export const Row = styled.div<{
   gap?: number | boolean;
   between?: boolean;
@@ -53,9 +49,3 @@ export const Row = styled.div<{
   }
 `;
 
-export const ScreenContainer = styled.div`
-  padding: 3.2rem;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-`;

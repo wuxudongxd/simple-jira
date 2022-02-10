@@ -1,20 +1,21 @@
 import { Button, Dropdown, Menu } from "antd";
-import {  Route, Routes } from "react-router";
-import { useAdminInfo, useLogout } from "~/hooks/http/useAuth";
+import { ProjectPopover } from "components/project-popover";
+import { UserPopover } from "components/user-popover";
+import { Route, Routes } from "react-router";
 import { resetRoute } from "src/utils";
-// import { ProjectScreen } from "src/views/project";
+import { ProjectScreen } from "src/views/project/Item";
 import { ProjectListScreen } from "src/views/project/list";
+import { useAdminInfo, useLogout } from "~/hooks/http/useAuth";
 import { ProjectModal } from "~/views/project/list/Modal";
-// import { ProjectPopover } from "components/project-popover";
-// import { UserPopover } from "components/user-popover";
 
-export default function AuthenticatedApp() {  
+export default function AuthenticatedApp() {
   return (
     <div className="gird grid-rows-[6rem_1fr]">
       <PageHeader />
       <div className="flex overflow-hidden">
         <Routes>
           <Route path="/" element={<ProjectListScreen />} />
+          <Route path="/:id/*" element={<ProjectScreen />} />
         </Routes>
       </div>
       <ProjectModal />
@@ -29,8 +30,8 @@ const PageHeader = () => {
         <Button className="p-0" onClick={resetRoute}>
           <div className="bg-[url('assets/software-logo.svg')] w-72 h-8 bg-no-repeat bg-contain"></div>
         </Button>
-        {/* <ProjectPopover />
-        <UserPopover /> */}
+        <ProjectPopover />
+        <UserPopover />
       </div>
       <div className="flex justify-center items-center">
         <User />
