@@ -24,7 +24,7 @@ const TaskCard = ({ task }: { task: Task }) => {
   return (
     <Card
       onClick={() => startEdit(task.id)}
-      style={{ marginBottom: "0.5rem", cursor: "pointer" }}
+      className="mb-2 cursor-pointer"
       key={task.id}>
       <p>
         <Mark keyword={keyword} name={task.name} />

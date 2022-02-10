@@ -2,14 +2,25 @@ import { Spin } from "antd";
 import { useCallback } from "react";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { Drag, Drop, DropChild } from "~/components/common/drag-and-drop";
-import { useBoards, useReorderBoard, useReorderTask, useTasks } from "~/hooks/http";
+import {
+  useBoards,
+  useReorderBoard,
+  useReorderTask,
+  useTasks,
+} from "~/hooks/http";
 import { useDocumentTitle } from "~/hooks/useDocumentTitle";
 
 import { BoardColumn } from "./column";
 import { CreateBoard } from "./CreateBoard";
 import { TaskModal } from "./Modal";
 import { SearchPanel } from "./Search";
-import { useBoardSearchParams, useBoardsQueryKey, useProjectInUrl, useTasksQueryKey, useTasksSearchParams } from "./util";
+import {
+  useBoardSearchParams,
+  useBoardsQueryKey,
+  useProjectInUrl,
+  useTasksQueryKey,
+  useTasksSearchParams,
+} from "./util";
 
 export const boardScreen = () => {
   useDocumentTitle("看板列表");
@@ -23,40 +34,36 @@ export const boardScreen = () => {
 
   const onDragEnd = useDragEnd();
   return (
-
-      <DragDropContext onDragEnd={onDragEnd}>
-        <div className="flex flex-col w-full p-12">
-          <h1>{currentProject?.name}看板</h1>
-          <SearchPanel />
-          {isLoading ? (
-            <Spin size={"large"} />
-          ) : (
-            <div className="flex flex-1 overflow-x-scroll">
-              <Drop
-                type={"COLUMN"}
-                direction={"horizontal"}
-                droppableId={"board"}>
-                <DropChild style={{ display: "flex" }}>
-                  {boards?.map((board, index) => (
-                    <Drag
-                      key={board.id}
-                      draggableId={"board" + board.id}
-                      index={index}>
-                      <BoardColumn Board={board} key={board.id} />
-                    </Drag>
-                  ))}
-                </DropChild>
-              </Drop>
-              <CreateBoard />
-            </div>
-          )}
-          <TaskModal />
-        </div>
-      </DragDropContext>
+    <DragDropContext onDragEnd={onDragEnd}>
+      <div className="flex flex-col w-full p-12">
+        <h1>{currentProject?.name}看板</h1>
+        <SearchPanel />
+        {isLoading ? (
+          <Spin size="large" />
+        ) : (
+          <div className="flex flex-1 overflow-x-scroll">
+            <Drop type="COLUMN" direction="horizontal" droppableId="board">
+              <DropChild className="flex">
+                {boards?.map((board, index) => (
+                  <Drag
+                    key={board.id}
+                    draggableId={"board" + board.id}
+                    index={index}>
+                    <BoardColumn Board={board} key={board.id} />
+                  </Drag>
+                ))}
+              </DropChild>
+            </Drop>
+            <CreateBoard />
+          </div>
+        )}
+        <TaskModal />
+      </div>
+    </DragDropContext>
   );
 };
 
-export const useDragEnd = () => {
+const useDragEnd = () => {
   const { data: boards } = useBoards(useBoardSearchParams());
   const { mutate: reorderBoard } = useReorderBoard(useBoardsQueryKey());
   const { mutate: reorderTask } = useReorderTask(useTasksQueryKey());
