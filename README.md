@@ -1,1 +1,1 @@
-# vite-jira
+# simple-jira
